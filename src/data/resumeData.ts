@@ -12,7 +12,8 @@ export const profile: ProfileData = {
   age: 21,
   height: "5'6\"",
   weight: "64 kgs",
-  references: "Available upon request via LinkedIn."
+  references: "Available upon request via LinkedIn.",
+  profileImageUrl: "/images/profile.png"
 };
 
 export const educationList: EducationItem[] = [

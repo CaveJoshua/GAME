@@ -19,7 +19,30 @@ export const ReferencesSection: React.FC<ReferencesSectionProps> = ({ profile })
 
       <div className="personal-grid">
         <div className="personal-card">
-          <h3 style={{ fontSize: '1.15rem', marginBottom: '0.5rem', fontWeight: 700 }}>Personal Information</h3>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+            {profile.profileImageUrl && (
+              <img
+                src={profile.profileImageUrl}
+                alt={profile.name}
+                style={{
+                  width: '56px',
+                  height: '56px',
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  objectPosition: 'top center',
+                  border: '2px solid var(--blue-border)',
+                  boxShadow: '0 4px 12px rgba(2, 132, 199, 0.15)',
+                  flexShrink: 0
+                }}
+              />
+            )}
+            <div>
+              <h3 style={{ fontSize: '1.15rem', fontWeight: 700, margin: 0 }}>Personal Information</h3>
+              <div style={{ fontSize: '0.74rem', color: 'var(--blue-primary)', fontFamily: 'var(--font-mono)', marginTop: '2px' }}>
+                VERIFIED BIOMETRIC RECORD
+              </div>
+            </div>
+          </div>
           <div className="info-rows">
             <div>
               <div className="info-row-label">Date of Birth</div>

@@ -199,6 +199,14 @@
   overflow: hidden;
 }
 
+.brand-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  z-index: 1;
+}
+
 .brand-avatar::after {
   content: "";
   position: absolute;
@@ -207,6 +215,7 @@
   right: 0;
   height: 3px;
   background: var(--red-primary);
+  z-index: 2;
 }
 
 .brand-text h1 {
@@ -336,6 +345,143 @@
    ============================================================== */
 .resume-hero {
   padding: 3rem 0 2rem;
+}
+
+/* Hero Grid Split Layout */
+.hero-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2.75rem;
+  align-items: center;
+}
+
+.hero-main-content {
+  min-width: 0;
+}
+
+/* Executive Portrait Chassis */
+.hero-portrait-card {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.portrait-frame {
+  width: 290px;
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 0.95rem;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(56, 189, 248, 0.2);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.portrait-frame:hover {
+  border-color: var(--blue-primary);
+  box-shadow: 0 16px 36px -10px rgba(2, 132, 199, 0.2), 0 0 0 1px var(--blue-primary);
+  transform: translateY(-2px);
+}
+
+.portrait-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  margin-bottom: 0.65rem;
+  padding: 0 0.25rem;
+}
+
+.portrait-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+  animation: cyberPulse 2s infinite ease-in-out;
+}
+
+.portrait-status-text {
+  color: var(--text-primary);
+}
+
+.portrait-clearance {
+  margin-left: auto;
+  color: var(--blue-primary);
+  background: var(--blue-subtle);
+  padding: 1px 7px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  border: 1px solid var(--blue-border);
+}
+
+.portrait-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 330px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #09090b;
+}
+
+.portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.4s ease;
+}
+
+.portrait-frame:hover .portrait-img {
+  transform: scale(1.03);
+}
+
+.portrait-scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.8), transparent);
+  animation: scanDown 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scanDown {
+  0% { top: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.portrait-footer {
+  margin-top: 0.85rem;
+  padding: 0.25rem;
+  text-align: center;
+}
+
+.portrait-meta-name {
+  font-weight: 800;
+  font-size: 0.98rem;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.portrait-meta-title {
+  font-size: 0.72rem;
+  color: var(--blue-primary);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.portrait-meta-id {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-top: 4px;
 }
 
 .hero-telemetry-strip {
@@ -1835,6 +1981,23 @@
   }
 
   /* Hero Section Mobile */
+  .hero-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .hero-portrait-card {
+    margin-bottom: 0.5rem;
+  }
+
+  .portrait-frame {
+    width: 250px;
+  }
+
+  .portrait-image-wrapper {
+    height: 280px;
+  }
+
   .resume-hero {
     padding-top: 1.5rem;
   }

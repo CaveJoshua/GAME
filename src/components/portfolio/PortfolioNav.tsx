@@ -23,7 +23,13 @@ export const PortfolioNav: React.FC<PortfolioNavProps> = ({
       <div className="container flex justify-between items-center w-full">
         {/* Brand Group */}
         <div className="brand-group">
-          <div className="brand-avatar">RC</div>
+          <div className="brand-avatar">
+            {profile.profileImageUrl ? (
+              <img src={profile.profileImageUrl} alt={profile.name} loading="eager" />
+            ) : (
+              'RC'
+            )}
+          </div>
           <div className="brand-text">
             <h1 className="brand-name">{profile.name}</h1>
             <span className="brand-track-badge">

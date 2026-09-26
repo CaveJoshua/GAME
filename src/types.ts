@@ -19,6 +19,7 @@ export interface ProfileData {
   height: string;
   weight: string;
   references: string;
+  profileImageUrl?: string;
 }
 
 export interface EducationItem {
