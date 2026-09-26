@@ -3,7 +3,7 @@ import { ProfileData, EducationItem, SkillCategory, SeminarItem, CredlyBadgeItem
 export const profile: ProfileData = {
   name: "RAMEL JOSHUA O. CAVE",
   location: "Tugui Grande, Bani, Pangasinan, Philippines",
-  linkedinUrl: "https://www.linkedin.com/in/ramel-joshua-cave/",
+  linkedinUrl: "https://www.linkedin.com/in/rameljoshua",
   githubUrl: "https://github.com/CaveJoshua",
   credlyUrl: "https://www.credly.com/users/ramel-joshua-o-cave/edit/badges/credly",
   title: "Information Technology Professional • Network & Cyber Security Specialist",
