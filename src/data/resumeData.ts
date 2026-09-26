@@ -7,7 +7,7 @@ export const profile: ProfileData = {
   email: "nsec.fuhua.cv@gmail.com",
   credlyUrl: "https://www.credly.com/users/ramel-joshua-o-cave/edit/badges/credly",
   title: "Information Technology Professional • Network & Cyber Security Specialist",
-  about: "Bachelor of Science in Information Technology (Network & Security Track) graduate from the University of the Cordilleras with 1st Place Champion honors at Hack4Gov. Certified in Computer Systems Servicing & Networking (NC II) with extensive expertise in CISCO LAN routing & switching (CCNA 1-4), penetration testing toolchains (Kali Linux, Ghidra, Wireshark, Burp Suite), Python data analytics, C# Unity, React Router v7, PostgreSQL indexing, and cloud deployments.",
+  about: "Bachelor of Science in Information Technology (Network & Security Track) graduate from the University of the Cordilleras with 1st Place honors at Hack4Gov. Certified in Computer Systems Servicing & Networking (NC II) with extensive expertise in CISCO LAN routing & switching (CCNA 1-4), penetration testing toolchains (Kali Linux, Ghidra, Wireshark, Burp Suite), Python data analytics, C# Unity, React Router v7, PostgreSQL indexing, and cloud deployments.",
   dateOfBirth: "July 15, 2004",
   age: 21,
   height: "5'6\"",
@@ -90,10 +90,10 @@ export const seminarsAndTrainings: SeminarItem[] = [
     date: "August 13, 2025",
     venue: "Paragon Hotel, Baguio City",
     highlight: true,
-    award: "1st Place Champion",
-    badge: "CHAMPION",
+    award: "1st Place",
+    badge: "1ST PLACE",
     imageUrl: "/images/hack4gov5_2025.png",
-    imageCaption: "Hack4Gov 5 1st Place Champion Team • August 13, 2025"
+    imageCaption: "Hack4Gov 5 1st Place Team • August 13, 2025"
   },
   {
     title: "SAP HANA Training",
@@ -193,16 +193,16 @@ export const credlyBadges: CredlyBadgeItem[] = [
 
 export const hack4govGallery: Hack4GovGalleryItem[] = [
   {
-    id: "hack4gov5_champion",
+    id: "hack4gov5_1stplace",
     title: "Hack4Gov 5 Regional Cyber Challenge",
     competition: "Department of Information and Communications Technology (DICT) • Region 1 / CAR",
     date: "August 13, 2025",
     venue: "Paragon Hotel, Otek St., Baguio City",
-    award: "1st Place Regional Champion",
-    badge: "CHAMPION // 2025",
-    description: "Official 1st Place Regional Champion team photo under the national theme 'Decoding Youth Innovation, Anchoring One Nation's Digital Defense'. Competed and triumphed against leading universities in offensive web exploitation, reverse engineering, binary analysis, and incident mitigation.",
+    award: "1st Place",
+    badge: "1ST PLACE // 2025",
+    description: "Official 1st Place team photo under the national theme 'Decoding Youth Innovation, Anchoring One Nation's Digital Defense'. Competed and triumphed against leading universities in offensive web exploitation, reverse engineering, binary analysis, and incident mitigation.",
     imageUrl: "/images/hack4gov5_2025.png",
-    alt: "Hack4Gov 5 1st Place Champions on Stage at Paragon Hotel, Baguio City"
+    alt: "Hack4Gov 5 1st Place Winners on Stage at Paragon Hotel, Baguio City"
   },
   {
     id: "hack4gov_qualifiers",

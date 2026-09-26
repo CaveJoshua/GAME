@@ -636,14 +636,14 @@ export const OriginalGame: React.FC<OriginalGameProps> = ({ onComplete }) => {
     let targetPct = 0;
     let displayedPct = 0;
 
-    // Smooth Overall Count Increment (1% -> 100%)
+    // Smooth Rapid Overall Count Increment (1% -> 100%)
     function updateCounter() {
       if (displayedPct < targetPct && bootCounter) {
-        displayedPct++;
+        displayedPct = Math.min(targetPct, displayedPct + 4);
         bootCounter.textContent = `[${displayedPct}%]`;
       }
     }
-    const counterInterval = setInterval(updateCounter, 20);
+    const counterInterval = setInterval(updateCounter, 10);
 
     let bootActive = false;
 
@@ -661,7 +661,7 @@ export const OriginalGame: React.FC<OriginalGameProps> = ({ onComplete }) => {
           // Final Transition to Resume Screen!
           setTimeout(() => {
             onComplete();
-          }, 650);
+          }, 200);
           return;
         }
 
@@ -681,14 +681,14 @@ export const OriginalGame: React.FC<OriginalGameProps> = ({ onComplete }) => {
           if (!typingText || !bootLinesContainer || !typingLine) return;
 
           if (charIdx < textToType.length) {
-            typingText.textContent += textToType.charAt(charIdx);
-            if (charIdx % 3 === 0) playKeyTick();
-            charIdx++;
-            
-            const delay = Math.random() < 0.1 ? 24 : 10;
-            setTimeout(typeChar, delay);
+            // Rapid high-speed terminal burst typing
+            const nextIdx = Math.min(textToType.length, charIdx + 2);
+            typingText.textContent += textToType.substring(charIdx, nextIdx);
+            if (charIdx % 4 === 0) playKeyTick();
+            charIdx = nextIdx;
+            setTimeout(typeChar, 4);
           } else {
-            // Check if this line is a semester: run the 0% -> 100% count
+            // Check if this line is a semester: run rapid 0% -> 100% count
             if (item.isSemester) {
               const permLine = document.createElement('div');
               permLine.className = `boot-line visible ${item.cls || ''}`;
@@ -705,13 +705,13 @@ export const OriginalGame: React.FC<OriginalGameProps> = ({ onComplete }) => {
               bootLinesContainer.insertBefore(permLine, typingLine);
               typingText.textContent = "";
 
-              // Run the numerical 0 -> 100 count checking
+              // Run fast numerical 0 -> 100 count checking
               let semCount = 0;
               const semTimer = setInterval(() => {
-                semCount++;
+                semCount = Math.min(100, semCount + 5);
                 counterSpan.textContent = `[ ${semCount}% ]`;
                 
-                if (semCount % 4 === 0) playKeyTick();
+                if (semCount % 10 === 0) playKeyTick();
 
                 const pStart = item.pctStart || 0;
                 const pEnd = item.pctEnd || 100;
@@ -724,9 +724,9 @@ export const OriginalGame: React.FC<OriginalGameProps> = ({ onComplete }) => {
                   playSuccessChime(620 + currentLineIdx * 40);
 
                   currentLineIdx++;
-                  setTimeout(typeBootLine, 220);
+                  setTimeout(typeBootLine, 45);
                 }
-              }, 12);
+              }, 8);
 
             } else {
               const permLine = document.createElement('div');
@@ -737,7 +737,7 @@ export const OriginalGame: React.FC<OriginalGameProps> = ({ onComplete }) => {
               typingText.textContent = "";
               currentLineIdx++;
 
-              setTimeout(typeBootLine, item.cls === "complete" ? 180 : 85);
+              setTimeout(typeBootLine, item.cls === "complete" ? 60 : 25);
             }
           }
         }
@@ -745,7 +745,7 @@ export const OriginalGame: React.FC<OriginalGameProps> = ({ onComplete }) => {
         typeChar();
       }
 
-      setTimeout(typeBootLine, 350);
+      setTimeout(typeBootLine, 60);
     }
 
     return () => {

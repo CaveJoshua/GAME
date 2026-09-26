@@ -17,28 +17,38 @@
   --text-muted: #71717a;
   --text-inverse: #ffffff;
 
-  /* Imperial Gold Accents */
+  /* Imperial Gold Accents (Medals & 1st Place) */
   --gold-primary: #c59b27;
   --gold-light: #fbbf24;
   --gold-dark: #997517;
-  --gold-glow: rgba(197, 155, 39, 0.28);
+  --gold-glow: rgba(197, 155, 39, 0.25);
   --gold-subtle: rgba(197, 155, 39, 0.08);
-  --gold-border: rgba(197, 155, 39, 0.38);
+  --gold-border: rgba(197, 155, 39, 0.32);
 
-  /* Tactical Crimson Red Accents */
-  --red-primary: #dc2626;
-  --red-dark: #b91c1c;
-  --red-glow: rgba(220, 38, 38, 0.25);
-  --red-subtle: rgba(220, 38, 38, 0.08);
-  --red-border: rgba(220, 38, 38, 0.35);
+  /* Cyber Tech Blue Accents (Network & Security Dominant) */
+  --blue-primary: #1d4ed8;
+  --blue-vivid: #2563eb;
+  --blue-light: #3b82f6;
+  --blue-sky: #60a5fa;
+  --blue-glow: rgba(37, 99, 235, 0.25);
+  --blue-subtle: rgba(37, 99, 235, 0.07);
+  --blue-border: rgba(37, 99, 235, 0.28);
+
+  /* Tactical Cyber Red Accents (Defense & Alert) */
+  --red-primary: #e11d48;
+  --red-dark: #be123c;
+  --red-light: #f43f5e;
+  --red-glow: rgba(225, 29, 72, 0.25);
+  --red-subtle: rgba(225, 29, 72, 0.07);
+  --red-border: rgba(225, 29, 72, 0.28);
 
   /* Borders & Shadows */
-  --border-light: rgba(0, 0, 0, 0.08);
-  --border-medium: rgba(0, 0, 0, 0.14);
-  --border-dark: #09090b;
-  --shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
-  --shadow-elevated: 0 12px 30px -4px rgba(0, 0, 0, 0.08);
-  --shadow-gold: 0 10px 30px -5px var(--gold-glow);
+  --border-light: rgba(15, 23, 42, 0.08);
+  --border-medium: rgba(15, 23, 42, 0.15);
+  --border-dark: #0f172a;
+  --shadow-subtle: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+  --shadow-elevated: 0 12px 30px -4px rgba(15, 23, 42, 0.09);
+  --shadow-blue: 0 10px 30px -5px var(--blue-glow);
   --shadow-red: 0 10px 25px -5px var(--red-glow);
 
   /* Geometry & Typography Tokens */

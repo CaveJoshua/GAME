@@ -58,6 +58,69 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
   return (
     <div className="resume-wrapper">
       {/* ==============================================================
+           CYBER TRIAD CINEMATIC BACKGROUND (CIA TRIAD WATERMARK)
+           ============================================================== */}
+      <div className="cyber-triad-bg" aria-hidden="true">
+        <svg className="cyber-triad-svg" viewBox="0 0 1440 900" fill="none" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="triadBlueRed" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#2563eb" stopOpacity="0.35" />
+              <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.12" />
+              <stop offset="100%" stopColor="#e11d48" stopOpacity="0.32" />
+            </linearGradient>
+            <radialGradient id="nodeGlowBlue" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#2563eb" stopOpacity="0.22" />
+              <stop offset="100%" stopColor="#2563eb" stopOpacity="0" />
+            </radialGradient>
+            <radialGradient id="nodeGlowRed" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#e11d48" stopOpacity="0.22" />
+              <stop offset="100%" stopColor="#e11d48" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+
+          {/* Tactical Coordinate Grid Overlay */}
+          <g opacity="0.35">
+            <line x1="720" y1="0" x2="720" y2="900" stroke="#2563eb" strokeWidth="0.8" strokeDasharray="6 6" opacity="0.25" />
+            <line x1="0" y1="420" x2="1440" y2="420" stroke="#e11d48" strokeWidth="0.8" strokeDasharray="6 6" opacity="0.18" />
+            <circle cx="720" cy="420" r="320" stroke="#2563eb" strokeWidth="1" strokeDasharray="8 8" opacity="0.15" />
+            <circle cx="720" cy="420" r="460" stroke="#e11d48" strokeWidth="0.8" strokeDasharray="12 12" opacity="0.1" />
+          </g>
+
+          {/* THE CYBER CIA TRIAD */}
+          <g className="triad-geometry">
+            <polygon points="720,110 380,690 1060,690" stroke="url(#triadBlueRed)" strokeWidth="2.5" fill="rgba(37, 99, 235, 0.015)" />
+            <polygon points="720,160 425,650 1015,650" stroke="#3b82f6" strokeWidth="1" strokeDasharray="8 6" opacity="0.2" />
+            <polygon points="720,650 550,380 890,380" stroke="#e11d48" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.18" />
+
+            {/* Triad Node Glows */}
+            <circle cx="720" cy="110" r="85" fill="url(#nodeGlowBlue)" />
+            <circle cx="380" cy="690" r="85" fill="url(#nodeGlowRed)" />
+            <circle cx="1060" cy="690" r="85" fill="url(#nodeGlowBlue)" />
+
+            {/* Vertex Nodes */}
+            <circle cx="720" cy="110" r="8" fill="#1d4ed8" stroke="#ffffff" strokeWidth="2.5" />
+            <circle cx="380" cy="690" r="8" fill="#e11d48" stroke="#ffffff" strokeWidth="2.5" />
+            <circle cx="1060" cy="690" r="8" fill="#2563eb" stroke="#ffffff" strokeWidth="2.5" />
+
+            {/* CIA Labels in Monospace */}
+            <text x="720" y="85" textAnchor="middle" fill="#1d4ed8" fontFamily="'JetBrains Mono', monospace" fontSize="11" fontWeight="700" letterSpacing="3">
+              [ CONFIDENTIALITY // NODE_01 ]
+            </text>
+            <text x="320" y="730" textAnchor="middle" fill="#e11d48" fontFamily="'JetBrains Mono', monospace" fontSize="11" fontWeight="700" letterSpacing="3">
+              [ INTEGRITY // NODE_02 ]
+            </text>
+            <text x="1120" y="730" textAnchor="middle" fill="#2563eb" fontFamily="'JetBrains Mono', monospace" fontSize="11" fontWeight="700" letterSpacing="3">
+              [ AVAILABILITY // NODE_03 ]
+            </text>
+
+            <text x="720" y="425" textAnchor="middle" fill="#64748b" fontFamily="'JetBrains Mono', monospace" fontSize="11" letterSpacing="4" opacity="0.5">
+              NETSECURITY TRACK // ZERO TRUST CORE // IEEE 802.1Q
+            </text>
+          </g>
+        </svg>
+      </div>
+
+      {/* ==============================================================
            TOP NAVIGATION BAR
            ============================================================== */}
       <header className="resume-nav">
@@ -66,7 +129,10 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
             <div className="brand-avatar">RC</div>
             <div className="brand-text">
               <h1>{profile.name}</h1>
-              <span>BSIT • NETWORK & SECURITY TRACK</span>
+              <span className="brand-track-badge">
+                <span className="track-pulse-dot"></span>
+                <span>BSIT • NETWORK & SECURITY TRACK</span>
+              </span>
             </div>
           </div>
 
@@ -80,7 +146,7 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
                 document.getElementById('credly-badges')?.scrollIntoView({ behavior: 'smooth' });
               }}
               title="Jump to Credly Verified Badges"
-              style={{ borderColor: 'var(--gold-border)', color: 'var(--gold-dark)', textDecoration: 'none' }}
+              style={{ borderColor: 'var(--blue-border)', color: 'var(--blue-primary)', textDecoration: 'none' }}
             >
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="8" r="7"></circle>
@@ -98,7 +164,7 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
                 document.getElementById('competition-proof')?.scrollIntoView({ behavior: 'smooth' });
               }}
               title="Jump to Hack4Gov Competition Photos"
-              style={{ borderColor: 'rgba(225, 29, 72, 0.4)', color: 'var(--red-primary)', textDecoration: 'none' }}
+              style={{ borderColor: 'var(--red-border)', color: 'var(--red-primary)', textDecoration: 'none' }}
             >
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
@@ -129,23 +195,45 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
       </header>
 
       {/* ==============================================================
-           HERO HEADER SECTION
+           HERO HEADER SECTION & NETSECURITY TRACK SHOWCASE
            ============================================================== */}
       <main className="container">
         <section className="resume-hero">
-          <div className="hero-status-pill">
-            <span style={{ color: 'var(--red-primary)' }}>●</span>
-            <span>UNIVERSITY OF THE CORDILLERAS • GRADUATE 2026</span>
+          <div className="hero-telemetry-strip">
+            <div className="telemetry-tag">
+              <span>TRACK: NETWORK & CYBER SECURITY</span>
+            </div>
+            <span className="telemetry-sep">•</span>
+            <div className="telemetry-tag">
+              <span>CLEARANCE: LEVEL 01 ACTIVE</span>
+            </div>
+            <span className="telemetry-sep">•</span>
+            <div className="telemetry-tag">
+              <span>SPECIALIZATION: OFFENSIVE & DEFENSIVE OPS</span>
+            </div>
+          </div>
+
+          <div className="hero-status-pill netsec-pill">
+            <span className="status-blink-dot"></span>
+            <span className="netsec-tag-text">NETSECURITY TRACK</span>
+            <span className="pill-divider">//</span>
+            <span>BSIT GRADUATE 2026</span>
+            <span className="pill-divider">//</span>
+            <span className="netsec-univ">UNIVERSITY OF THE CORDILLERAS</span>
           </div>
 
           <h1 className="hero-name">{profile.name}</h1>
-          <div className="hero-title">{profile.title}</div>
+          <div className="hero-title">
+            <span className="title-red">Information Technology Specialist</span>
+            <span className="title-sep">•</span>
+            <span className="title-blue">Network & Cyber Security Engineering</span>
+          </div>
           <p className="hero-about">{profile.about}</p>
 
           {/* Contact Details Bar */}
           <div className="hero-contact-bar">
             <div className="contact-pill">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
@@ -153,7 +241,7 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
             </div>
 
             <div className="contact-pill">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
               </svg>
               <a href={`tel:${profile.phone}`}>{profile.phone}</a>
@@ -167,7 +255,7 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
             </div>
 
             <div className="contact-pill">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                 <polyline points="22,6 12,13 2,6"></polyline>
               </svg>
@@ -182,8 +270,8 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
             </div>
 
             {/* Credly Profile Link */}
-            <div className="contact-pill" style={{ background: 'var(--gold-subtle)', border: '1px solid var(--gold-border)', borderRadius: 'var(--radius-sm)', padding: '3px 10px' }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-dark)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <div className="contact-pill" style={{ background: 'var(--blue-subtle)', border: '1px solid var(--blue-border)', borderRadius: 'var(--radius-sm)', padding: '3px 10px' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="8" r="7"></circle>
                 <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
               </svg>
@@ -191,7 +279,7 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
                 href={profile.credlyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ color: 'var(--gold-dark)', fontWeight: 700, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}
+                style={{ color: 'var(--blue-primary)', fontWeight: 700, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}
               >
                 <span>Credly Badges</span>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -202,24 +290,55 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
               </a>
             </div>
           </div>
+
+          {/* ==============================================================
+               NETSECURITY TRACK CORE CAPABILITIES (TRIAD PILLARS)
+               ============================================================== */}
+          <div className="netsec-track-showcase">
+            <div className="netsec-pillar-card">
+              <div className="pillar-header">
+                <span className="pillar-num">[ PILLAR 01 ]</span>
+                <span className="pillar-icon">🛡️</span>
+              </div>
+              <h3 className="pillar-title">Network Infrastructure & CISCO LAN</h3>
+              <p className="pillar-sub">CCNA 1–4 Routing & Switching, VLANs, Subnetting, Server Diagnostics & NC II Certified Systems</p>
+            </div>
+
+            <div className="netsec-pillar-card red-accent">
+              <div className="pillar-header">
+                <span className="pillar-num">[ PILLAR 02 ]</span>
+                <span className="pillar-icon">⚔️</span>
+              </div>
+              <h3 className="pillar-title">Offensive Security & Pen-Testing</h3>
+              <p className="pillar-sub">Kali Linux Toolchain, Ghidra & JADX Decompilation, Wireshark, Burp Suite, Binary & CTF Ops</p>
+            </div>
+
+            <div className="netsec-pillar-card dual-accent">
+              <div className="pillar-header">
+                <span className="pillar-num">[ PILLAR 03 ]</span>
+                <span className="pillar-icon">⚙️</span>
+              </div>
+              <h3 className="pillar-title">Enterprise Defense & AI Security</h3>
+              <p className="pillar-sub">SAP HANA & SAP Generative AI Developer Certified, PostgreSQL Indexing, Render & Cloudflare</p>
+            </div>
+          </div>
         </section>
 
         {/* ==============================================================
-             HACK4GOV 1ST PLACE CHAMPION BANNER (GOLD & BLACK PRESTIGE)
+             HACK4GOV 1ST PLACE BANNER (WHITE + BLUE + RED PRESTIGE)
              ============================================================== */}
         <div className="champion-banner">
           <div className="champion-content">
             <div className="trophy-badge">🏆</div>
             <div className="champion-text">
               <h3>HACK4GOV 5 REGIONAL CYBER CHALLENGE — 1ST PLACE</h3>
-              <p>Top Cyber Defense & Penetration Testing Competitor • Champion Honors</p>
+              <p>Top Cyber Defense & Penetration Testing Competitor • 1st Place Honors</p>
             </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
             <a
               href="#competition-proof"
-              className="btn"
-              style={{ background: 'var(--gold-primary)', color: '#09090b', fontWeight: 700, textDecoration: 'none' }}
+              className="btn btn-red-tactical"
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('competition-proof')?.scrollIntoView({ behavior: 'smooth' });
@@ -233,8 +352,7 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
             </a>
             <a
               href="#credly-badges"
-              className="btn"
-              style={{ background: 'rgba(255, 255, 255, 0.1)', color: '#ffffff', border: '1px solid rgba(255, 255, 255, 0.25)', fontWeight: 600, textDecoration: 'none' }}
+              className="btn btn-blue-cyber"
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('credly-badges')?.scrollIntoView({ behavior: 'smooth' });
@@ -356,7 +474,7 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
               <span className="section-tag">Cyber Defense Honors & Documentation</span>
               <h2 className="section-title">Hack4Gov Competition Proof</h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginTop: '0.35rem', maxWidth: '750px' }}>
-                Photographic documentation and verified credentials confirming 1st Place Regional Championship and Regional Finalist honors at the Department of Information and Communications Technology (DICT) Hack4Gov Cyber Challenges.
+                Photographic documentation and verified credentials confirming 1st Place and Regional Finalist honors at the Department of Information and Communications Technology (DICT) Hack4Gov Cyber Challenges.
               </p>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
