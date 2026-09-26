@@ -6,7 +6,8 @@ import {
   skillCategories,
   seminarsAndTrainings,
   credlyBadges,
-  hack4govGallery
+  hack4govGallery,
+  architectureProjects
 } from '../data/resumeData';
 
 interface ResumeScreenProps {
@@ -128,10 +129,10 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
           <div className="brand-group">
             <div className="brand-avatar">RC</div>
             <div className="brand-text">
-              <h1>{profile.name}</h1>
+              <h1 className="brand-name">{profile.name}</h1>
               <span className="brand-track-badge">
                 <span className="track-pulse-dot"></span>
-                <span>BSIT • NETWORK & SECURITY TRACK</span>
+                <span className="brand-track-text">BSIT • NETSECURITY TRACK</span>
               </span>
             </div>
           </div>
@@ -139,56 +140,72 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
           <div className="nav-actions">
             {/* Credly Verified Badges */}
             <a
-              className="btn btn-print"
+              className="btn btn-nav-pill"
               href="#credly-badges"
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('credly-badges')?.scrollIntoView({ behavior: 'smooth' });
               }}
               title="Jump to Credly Verified Badges"
-              style={{ borderColor: 'var(--blue-border)', color: 'var(--blue-primary)', textDecoration: 'none' }}
             >
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="8" r="7"></circle>
                 <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
               </svg>
-              <span>5 Badges</span>
+              <span>Badges</span>
             </a>
 
             {/* Hack4Gov Competition Proof */}
             <a
-              className="btn btn-print"
+              className="btn btn-nav-pill"
               href="#competition-proof"
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('competition-proof')?.scrollIntoView({ behavior: 'smooth' });
               }}
               title="Jump to Hack4Gov Competition Photos"
-              style={{ borderColor: 'var(--red-border)', color: 'var(--red-primary)', textDecoration: 'none' }}
             >
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
                 <circle cx="12" cy="13" r="4"></circle>
               </svg>
-              <span>Photo Proof</span>
+              <span>Proof</span>
+            </a>
+
+            {/* Featured Project Showcase */}
+            <a
+              className="btn btn-nav-pill"
+              href="#software-architecture"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('software-architecture')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              title="Jump to Featured Project & System Architecture"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+              <span>Project</span>
             </a>
 
             {/* Re-enter Game / Security Terminal */}
             <button className="btn btn-game" onClick={onRestartGame} title="Launch Combat Security Terminal">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
               </svg>
-              <span>Security Terminal Game</span>
+              <span>Game</span>
             </button>
 
             {/* Print / ATS PDF */}
             <button className="btn btn-print" onClick={() => window.print()} title="Print or Save as ATS PDF">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <polyline points="6 9 6 2 18 2 18 9"></polyline>
                 <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
                 <rect x="6" y="14" width="12" height="8"></rect>
               </svg>
-              <span>Print / PDF</span>
+              <span>PDF</span>
             </button>
           </div>
         </div>
@@ -361,7 +378,7 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
               <span>5 Credly Badges</span>
             </a>
             <div className="champion-meta">
-              AUGUST 13, 2025 // PARAGON HOTEL, BAGUIO CITY
+              AUGUST 13, 2026 // PARAGON HOTEL, BAGUIO CITY
             </div>
           </div>
         </div>
@@ -478,7 +495,7 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
               </p>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span className="hack4gov-tag-pill gold">2025 COMPETITION ARCHIVE</span>
+              <span className="hack4gov-tag-pill gold">2025 – 2026 COMPETITION ARCHIVE</span>
             </div>
           </div>
 
@@ -540,6 +557,115 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
                       <span>Enlarge Photo</span>
                     </button>
                   </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ==============================================================
+             FEATURED ENGINEERING PROJECT & ZERO-TRUST ARCHITECTURE
+             ============================================================== */}
+        <section id="software-architecture" className="section architecture-section">
+          <div className="section-header-split">
+            <div>
+              <span className="section-tag-blue">FLAGSHIP SYSTEM // PRODUCTION ARCHITECTURE</span>
+              <h2 className="section-title">Featured Systems Architecture & Engineering</h2>
+              <p className="section-desc">
+                Production-grade municipal resident management platform featuring custom zero-trust IDS/IPS security regulator middleware, Cloudflare edge CORS origin whitelisting, and Supabase PostgreSQL persistence.
+              </p>
+            </div>
+            <a
+              href="https://github.com/CaveJoshua/barangay-eng-shill-"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-github-preview"
+              title="View GitHub Project Repository"
+            >
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <span>View GitHub Project ↗</span>
+            </a>
+          </div>
+
+          <div className="architecture-grid">
+            {architectureProjects.map((arch) => (
+              <div key={arch.id} className="arch-card">
+                <div className="arch-card-top">
+                  <span className="arch-badge">{arch.badge}</span>
+                  <span className="arch-category">{arch.category}</span>
+                </div>
+
+                <h3 className="arch-title">{arch.title}</h3>
+                <p className="arch-overview">{arch.overview}</p>
+
+                {/* System Topology Blueprint Flow */}
+                <div className="arch-topology-box">
+                  <div className="arch-topology-header">
+                    <span className="topology-terminal-title">DATA FLOW // TOPOLOGY VECTOR</span>
+                    <span className="topology-status-live">● ACTIVE ARCHITECTURE</span>
+                  </div>
+                  <div className="arch-topology-flow">
+                    {arch.topologyFlow}
+                  </div>
+                </div>
+
+                {/* Node Pipeline Badges */}
+                <div className="arch-nodes-chain">
+                  {arch.topologyNodes.map((node, nIdx) => (
+                    <React.Fragment key={nIdx}>
+                      <span className="arch-node-chip">{node}</span>
+                      {nIdx < arch.topologyNodes.length - 1 && <span className="arch-node-arrow">➔</span>}
+                    </React.Fragment>
+                  ))}
+                </div>
+
+                {/* Design Patterns & Tech Stack */}
+                <div className="arch-meta-columns">
+                  <div className="arch-meta-block">
+                    <span className="arch-meta-label">DESIGN PATTERNS:</span>
+                    <div className="arch-tag-list">
+                      {arch.patterns.map((pat, pIdx) => (
+                        <span key={pIdx} className="arch-tag-pattern">{pat}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="arch-meta-block">
+                    <span className="arch-meta-label">CORE TECHNOLOGIES:</span>
+                    <div className="arch-tag-list">
+                      {arch.techStack.map((tech, tIdx) => (
+                        <span key={tIdx} className="arch-tag-tech">{tech}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Security Controls & Invariants */}
+                <div className="arch-security-block">
+                  <span className="arch-meta-label">SECURITY & RESILIENCE CONTROLS:</span>
+                  <ul className="arch-security-list">
+                    {arch.securityControls.map((sec, sIdx) => (
+                      <li key={sIdx}>
+                        <span className="arch-check-icon">✓</span>
+                        <span>{sec}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Card Footer with GitHub project link */}
+                <div className="arch-footer">
+                  <span className="arch-spec-tag">ARCHITECTURE SCHEMATIC V1.0</span>
+                  <a
+                    href={arch.githubUrl || "https://github.com/CaveJoshua"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="arch-repo-btn"
+                  >
+                    <span>Inspect GitHub Repo</span>
+                    <span>↗</span>
+                  </a>
                 </div>
               </div>
             ))}
@@ -714,7 +840,7 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
           </div>
           <div>Bachelor of Science in Information Technology • University of the Cordilleras</div>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', marginTop: '0.5rem' }}>
-            Engineered in Pure TSX + React 18 + Vite • White Theme with Red, Black & Gold Accents
+            Engineered in Pure TSX + React 18 + Vite • White Theme with Cyber Blue, Tactical Red & Gold Accents
           </div>
         </div>
       </footer>

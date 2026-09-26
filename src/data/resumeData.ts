@@ -1,4 +1,4 @@
-import { ProfileData, EducationItem, SkillCategory, SeminarItem, CredlyBadgeItem, Hack4GovGalleryItem } from '../types';
+import { ProfileData, EducationItem, SkillCategory, SeminarItem, CredlyBadgeItem, Hack4GovGalleryItem, ArchitectureProjectItem } from '../types';
 
 export const profile: ProfileData = {
   name: "RAMEL JOSHUA O. CAVE",
@@ -87,13 +87,13 @@ export const skillCategories: SkillCategory[] = [
 export const seminarsAndTrainings: SeminarItem[] = [
   {
     title: "Hack4Gov 5 (Regional Cyber Competition)",
-    date: "August 13, 2025",
+    date: "August 13, 2026",
     venue: "Paragon Hotel, Baguio City",
     highlight: true,
     award: "1st Place",
     badge: "1ST PLACE",
     imageUrl: "/images/hack4gov5_2025.png",
-    imageCaption: "Hack4Gov 5 1st Place Team • August 13, 2025"
+    imageCaption: "Hack4Gov 5 1st Place Team • August 13, 2026"
   },
   {
     title: "SAP HANA Training",
@@ -196,10 +196,10 @@ export const hack4govGallery: Hack4GovGalleryItem[] = [
     id: "hack4gov5_1stplace",
     title: "Hack4Gov 5 Regional Cyber Challenge",
     competition: "Department of Information and Communications Technology (DICT) • Region 1 / CAR",
-    date: "August 13, 2025",
+    date: "August 13, 2026",
     venue: "Paragon Hotel, Otek St., Baguio City",
     award: "1st Place",
-    badge: "1ST PLACE // 2025",
+    badge: "1ST PLACE // 2026",
     description: "Official 1st Place team photo under the national theme 'Decoding Youth Innovation, Anchoring One Nation's Digital Defense'. Competed and triumphed against leading universities in offensive web exploitation, reverse engineering, binary analysis, and incident mitigation.",
     imageUrl: "/images/hack4gov5_2025.png",
     alt: "Hack4Gov 5 1st Place Winners on Stage at Paragon Hotel, Baguio City"
@@ -217,3 +217,48 @@ export const hack4govGallery: Hack4GovGalleryItem[] = [
     alt: "Ramel Joshua O. Cave and team holding DICT Hack4Gov Certificates of Participation"
   }
 ];
+
+export const architectureProjects: ArchitectureProjectItem[] = [
+  {
+    id: "barangay-eng-shill",
+    title: "Smart Barangay Management & Zero-Trust Security System",
+    category: "Full-Stack Enterprise & Network Security Architecture",
+    badge: "FLAGSHIP PROJECT // ZERO-TRUST CORE",
+    overview: "Production-grade municipal resident management, automated clearance processing, and zero-trust backend architecture. Features custom Intrusion Detection & Prevention (IDS/IPS) middleware (Regulator.js), real-time telemetry pulse diagnostics, Cloudflare edge CORS origin whitelisting, role-based access control (RBAC), and Supabase PostgreSQL persistence with 200MB multi-part document streaming.",
+    patterns: [
+      "Zero-Trust Security Handshake",
+      "Custom IDS / IPS Middleware Engine",
+      "Event Loop Lag & Telemetry Pulse",
+      "Role-Based Access Control (RBAC)",
+      "Dynamic Cloudflare Wildcard CORS",
+      "Automated Document Generation (jsPDF / ExcelJS)"
+    ],
+    techStack: [
+      "TypeScript & React 19",
+      "Express.js 5.2 (Zero-Trust Core)",
+      "Supabase (PostgreSQL + SSL CA)",
+      "Cloudflare Pages (Edge Frontend)",
+      "Helmet & Rate Limiter Flexible",
+      "Cloudinary Asset CDN",
+      "jsPDF & ExcelJS Document Generation"
+    ],
+    topologyNodes: [
+      "Cloudflare Pages Frontend",
+      "Express.js Gateway (Port 8000)",
+      "Regulator IDS/IPS Handshake Engine",
+      "Supabase PostgreSQL (SSL CA)",
+      "Cloudinary & Document Export Engines"
+    ],
+    topologyFlow: "Client [Cloudflare Pages HTTPS] ➔ Zero-Trust CORS Whitelist ➔ Express Security Regulator [Trace ID + IDS/IPS Scan] ➔ RBAC Controllers ➔ Supabase DB [SSL CA] + Cloudinary CDN",
+    securityControls: [
+      "Custom Intrusion Detection & Prevention (IDS/IPS Regulator)",
+      "Dynamic Cloudflare Origin Lockdown (*.barangay-engineer-s-hill.pages.dev)",
+      "Crypto UUID Request Trace IDs (X-Trace-Id Header)",
+      "15s Heartbeat Telemetry & Event Loop Lag Pulse Monitor",
+      "Helmet Security Headers & Cross-Origin Resource Policy",
+      "Rate Limiting, XSS Cleaning, and Zod / Joi Schema Validation"
+    ],
+    githubUrl: "https://github.com/CaveJoshua/barangay-eng-shill-"
+  }
+];
+

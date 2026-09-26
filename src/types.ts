@@ -75,3 +75,18 @@ export interface BootDiagnosticItem {
   pctEnd?: number;
   cls?: 'green' | 'complete' | 'gold' | '';
 }
+
+export interface ArchitectureProjectItem {
+  id: string;
+  title: string;
+  category: string;
+  badge: string;
+  overview: string;
+  patterns: string[];
+  techStack: string[];
+  topologyNodes: string[];
+  topologyFlow: string;
+  securityControls: string[];
+  githubUrl?: string;
+}
+
