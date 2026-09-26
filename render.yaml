@@ -1,0 +1,29 @@
+# Render Blueprint for Automated Deployment
+# Automatically provisions Zero-Trust Portfolio with Health Checks & SSL/TLS
+services:
+  # Option A: Web Service (Node.js with Zero-Trust server.js)
+  - type: web
+    name: ramel-cave-portfolio-web
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
+      - key: HOST
+        value: 0.0.0.0
+
+  # Option B: Static Site (Edge CDN with automatic TLS/SSL)
+  - type: web
+    name: ramel-cave-portfolio-static
+    env: static
+    plan: free
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    pullRequestPreviewsEnabled: true
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

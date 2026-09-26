@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node server.js",
+    "start:https": "node server.js --https",
+    "gen:certs": "node scripts/generate_certs.cjs"
   },
   "dependencies": {
     "react": "^18.3.1",

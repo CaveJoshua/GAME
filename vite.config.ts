@@ -1,5 +1,7 @@
 import { defineConfig, Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
+import fs from 'fs';
+import path from 'path';
 
 const securityHeaders: Record<string, string> = {
   // Strict Content Security Policy (Anti-XSS, Anti-Clickjacking, Anti-Hostile Injection)
@@ -67,14 +69,35 @@ function ngfwSecurityHeadersPlugin(): Plugin {
   };
 }
 
+// Load TLS / SSL Transport Certificates if present
+const keyPath = path.resolve(__dirname, 'certs/server.key');
+const crtPath = path.resolve(__dirname, 'certs/server.crt');
+const hasTlsCerts = fs.existsSync(keyPath) && fs.existsSync(crtPath);
+const enableHttps = (process.env.HTTPS === 'true' || process.env.VITE_HTTPS === 'true') && hasTlsCerts;
+
+const httpsOptions = enableHttps ? {
+  key: fs.readFileSync(keyPath),
+  cert: fs.readFileSync(crtPath)
+} : undefined;
+
 export default defineConfig({
   plugins: [react(), ngfwSecurityHeadersPlugin()],
   base: './',
   server: {
-    headers: securityHeaders
+    host: '0.0.0.0',
+    port: 5173,
+    headers: securityHeaders,
+    https: httpsOptions,
+    // @ts-ignore - Vite 6 allowedHosts property
+    allowedHosts: true
   },
   preview: {
-    headers: securityHeaders
+    host: '0.0.0.0',
+    port: Number(process.env.PORT) || 4173,
+    headers: securityHeaders,
+    https: httpsOptions,
+    // @ts-ignore - Vite 6 allowedHosts property
+    allowedHosts: true
   },
   build: {
     outDir: 'dist',
