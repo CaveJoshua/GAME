@@ -27,7 +27,7 @@ import { ReferencesSection } from './ReferencesSection';
 import { FooterSection } from './FooterSection';
 import { NgfwDefenseModal } from './NgfwDefenseModal';
 import { CertificateLightboxModal } from './CertificateLightboxModal';
-import { CtfTerminalShell } from './CtfTerminalShell';
+import { antiWebshellGuard } from '../../security/antiWebshellGuard';
 
 interface PortfolioChassisProps {
   onRestartGame: () => void;
@@ -36,14 +36,11 @@ interface PortfolioChassisProps {
 /**
  * PortfolioChassis - Master Architectural Orchestrator & State Chassis
  * Features plain white professional background, C++ WebAssembly memory security,
- * anti-inspection CTF defensive lockdown, and live zero-trust synchronization.
+ * anti-webshell terminal shield, anti-inspection protection, and live zero-trust synchronization.
  */
 export const PortfolioChassis: React.FC<PortfolioChassisProps> = ({ onRestartGame }) => {
   // GPU Compute & Fidelity Profiler
   const gpu = useGpuOptimizer();
-
-  // C++ Memory Security & Anti-Inspection Lockdown State
-  const [isLockedDown, setIsLockedDown] = useState<boolean>(false);
 
   // NGFW & Telemetry State
   const [ngfwStatus, setNgfwStatus] = useState<NGFWStatus | null>(null);
@@ -64,26 +61,6 @@ export const PortfolioChassis: React.FC<PortfolioChassisProps> = ({ onRestartGam
     setNgfwStatus(ngfw.getStatus());
   }, []);
 
-  useEffect(() => {
-    sync();
-    // Expose sync globally for live devtools inspection
-    (window as any).__syncPortfolioState__ = sync;
-
-    // Arm C++ WebAssembly Memory Guard and Anti-Inspection Traps
-    cppMemorySecurity.init((locked) => {
-      setIsLockedDown(locked);
-      if (locked) {
-        ngfw.recordEvent({
-          timestamp: new Date().toLocaleTimeString(),
-          type: 'ANTI_INSPECTION_TRIP',
-          severity: 'HIGH',
-          details: 'C++ WebAssembly memory guard tripped: hardware key or force-inspection probe intercepted',
-          source: 'CppMemorySecurityEngine',
-        });
-      }
-    });
-  }, [sync]);
-
   // Toast Dispatcher
   const showToast = useCallback((msg: string) => {
     setToastMessage(msg);
@@ -91,6 +68,24 @@ export const PortfolioChassis: React.FC<PortfolioChassisProps> = ({ onRestartGam
       setToastMessage(null);
     }, 2800);
   }, []);
+
+  useEffect(() => {
+    sync();
+    // Expose sync globally for live inspection
+    (window as any).__syncPortfolioState__ = sync;
+
+    // Arm C++ WebAssembly Memory Guard and Anti-Inspection Traps (discreet & protective)
+    cppMemorySecurity.init((reason) => {
+      showToast(`🛡️ Security Guard: ${reason}`);
+      sync();
+    });
+
+    // Arm Anti-WebShell & Terminal Injection Shield
+    antiWebshellGuard.init((alertMsg) => {
+      showToast(alertMsg);
+      sync();
+    });
+  }, [sync, showToast]);
 
   // Safe Clipboard Copy Handler
   const handleCopyClipboard = useCallback(
@@ -114,9 +109,15 @@ export const PortfolioChassis: React.FC<PortfolioChassisProps> = ({ onRestartGam
       details: 'Intercepted simulated cross-site script payload: <script>alert(1)</script>',
       source: 'Simulated User Probe',
     });
-    setNgfwStatus(ngfw.getStatus());
+    sync();
     showToast('NGFW Alert: Intercepted and blocked simulated attack probe!');
-  }, [showToast]);
+  }, [showToast, sync]);
+
+  // Simulated WebShell / Reverse-Shell Probe
+  const handleSimulateWebshellProbe = useCallback(() => {
+    antiWebshellGuard.simulateWebshellProbe();
+    sync();
+  }, [sync]);
 
   // Keyboard shortcut listener (Esc closes modals)
   useEffect(() => {
@@ -129,18 +130,6 @@ export const PortfolioChassis: React.FC<PortfolioChassisProps> = ({ onRestartGam
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
-
-  // If force-inspection or devtools tampering is detected, empty DOM and render CTF shell
-  if (isLockedDown) {
-    return (
-      <CtfTerminalShell
-        onUnlockSession={() => {
-          setIsLockedDown(false);
-          showToast('Session unlocked: C++ memory canary verified.');
-        }}
-      />
-    );
-  }
 
   return (
     <div className="resume-wrapper">
@@ -250,6 +239,7 @@ export const PortfolioChassis: React.FC<PortfolioChassisProps> = ({ onRestartGam
           status={ngfwStatus}
           onClose={() => setShowNgfwModal(false)}
           onSimulateProbe={handleSimulateProbe}
+          onSimulateWebshellProbe={handleSimulateWebshellProbe}
         />
       </ErrorBoundary>
 

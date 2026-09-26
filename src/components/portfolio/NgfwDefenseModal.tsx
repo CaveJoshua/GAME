@@ -6,18 +6,20 @@ interface NgfwDefenseModalProps {
   status: NGFWStatus | null;
   onClose: () => void;
   onSimulateProbe: () => void;
+  onSimulateWebshellProbe?: () => void;
 }
 
 /**
  * NgfwDefenseModal - Next-Gen Web Application Firewall & CSP Protocol Inspector Chassis
  * Zero-Trust security monitor showcasing runtime protections, HTTP isolation headers,
- * and active cryptographic session telemetry.
+ * C++ WebAssembly memory guardrails, Anti-Webshell shields, and active cryptographic telemetry.
  */
 export const NgfwDefenseModal: React.FC<NgfwDefenseModalProps> = ({
   isOpen,
   status,
   onClose,
   onSimulateProbe,
+  onSimulateWebshellProbe,
 }) => {
   if (!isOpen || !status) return null;
 
@@ -53,9 +55,15 @@ export const NgfwDefenseModal: React.FC<NgfwDefenseModalProps> = ({
               </span>
             </div>
             <div className="ngfw-stat-card">
-              <span className="ngfw-stat-label">CSP DIRECTIVE</span>
+              <span className="ngfw-stat-label">C++ WASM GUARD</span>
               <span className="ngfw-stat-value" style={{ color: '#38bdf8' }}>
-                {status.cspStatus}
+                0xDEADBEEF // ARMED
+              </span>
+            </div>
+            <div className="ngfw-stat-card">
+              <span className="ngfw-stat-label">ANTI-WEBSHELL</span>
+              <span className="ngfw-stat-value" style={{ color: '#22c55e' }}>
+                {status.antiWebshellActive ? 'ENFORCED' : 'STANDBY'}
               </span>
             </div>
             <div className="ngfw-stat-card">
@@ -69,22 +77,34 @@ export const NgfwDefenseModal: React.FC<NgfwDefenseModalProps> = ({
             </div>
           </div>
 
-          {/* Protocol Security Headers Table */}
+          {/* Protocol Security Headers & C++ Guardrails Table */}
           <div className="ngfw-panel">
             <div className="ngfw-panel-title">
-              <span>ACTIVE HTTP SECURITY HEADERS & DIRECTIVES</span>
-              <span style={{ color: '#22c55e', fontSize: '0.72rem' }}>● ALL COMPLIANT</span>
+              <span>ACTIVE SECURITY PROTOCOLS & C++ GUARDRAILS</span>
+              <span style={{ color: '#22c55e', fontSize: '0.72rem' }}>● ALL GUARDRAILS ACTIVE</span>
             </div>
             <table className="ngfw-table">
               <thead>
                 <tr>
-                  <th>HEADER NAME</th>
-                  <th>POLICY / DIRECTIVE</th>
+                  <th>GUARDRAIL / HEADER</th>
+                  <th>POLICY / PROTECTION MESH</th>
                   <th>PROTECTION LEVEL</th>
                   <th>STATUS</th>
                 </tr>
               </thead>
               <tbody>
+                <tr>
+                  <td className="header-name">Anti-WebShell & Terminal Guard</td>
+                  <td>Reverse shell, pipe command, webshell & terminal hijack blocker</td>
+                  <td>Zero Execution Vector</td>
+                  <td className="header-status">✓ ENFORCED</td>
+                </tr>
+                <tr>
+                  <td className="header-name">C++ WASM Linear Memory Guard</td>
+                  <td>128KB Linear Page, 0xDEADBEEF Canary, Adler32 Checksum, Hardware Traps</td>
+                  <td>Native Bytecode Isolation</td>
+                  <td className="header-status">✓ ARMED</td>
+                </tr>
                 <tr>
                   <td className="header-name">Content-Security-Policy</td>
                   <td>default-src 'self'; frame-ancestors 'none'; object-src 'none'</td>
@@ -153,9 +173,20 @@ export const NgfwDefenseModal: React.FC<NgfwDefenseModalProps> = ({
           <div className="ngfw-panel flex flex-col gap-3">
             <div className="ngfw-panel-title">
               <span>SESSION TRACE & DEFENSE PROBE TESTING</span>
-              <button className="ngfw-sim-button" onClick={onSimulateProbe}>
-                Simulate Hostile Injection Probe
-              </button>
+              <div className="flex gap-2 flex-wrap">
+                <button className="ngfw-sim-button" onClick={onSimulateProbe}>
+                  Simulate XSS Probe
+                </button>
+                {onSimulateWebshellProbe && (
+                  <button
+                    className="ngfw-sim-button"
+                    style={{ borderColor: '#ef4444', color: '#fca5a5' }}
+                    onClick={onSimulateWebshellProbe}
+                  >
+                    Simulate WebShell Probe
+                  </button>
+                )}
+              </div>
             </div>
             <div className="flex justify-between text-xs font-mono text-slate-400 flex-wrap gap-2">
               <span>
@@ -171,7 +202,7 @@ export const NgfwDefenseModal: React.FC<NgfwDefenseModalProps> = ({
                 <div className="text-[11px] font-mono text-rose-500 mb-1 font-bold">
                   RECENT INTERCEPT LOGS:
                 </div>
-                {status.recentEvents.slice(0, 3).map((ev: SecurityEvent, eIdx: number) => (
+                {status.recentEvents.slice(0, 4).map((ev: SecurityEvent, eIdx: number) => (
                   <div key={eIdx} className="text-[11px] font-mono text-slate-300 py-0.5">
                     <span className="text-slate-500">[{ev.timestamp}]</span>{' '}
                     <span className="text-rose-500 font-bold">[{ev.type}]</span>{' '}

@@ -12,7 +12,7 @@
 
 export interface SecurityEvent {
   timestamp: string;
-  type: 'CSP_VIOLATION' | 'INJECTION_ATTEMPT' | 'PROTOTYPE_POLLUTION' | 'TAMPER_DETECTED' | 'HEURISTIC_FLAG' | 'ANTI_INSPECTION_TRIP';
+  type: 'CSP_VIOLATION' | 'INJECTION_ATTEMPT' | 'PROTOTYPE_POLLUTION' | 'TAMPER_DETECTED' | 'HEURISTIC_FLAG' | 'ANTI_INSPECTION_TRIP' | 'WEBSHELL_BLOCKED';
   severity: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
   details: string;
   source?: string;
@@ -24,6 +24,7 @@ export interface NGFWStatus {
   mode: string;
   cspStatus: string;
   antiTamperActive: boolean;
+  antiWebshellActive: boolean;
   prototypePollutionGuarded: boolean;
   threatsBlocked: number;
   lastPulse: string;
@@ -160,6 +161,7 @@ class NGFWEngine {
       mode: 'ENFORCING // ZERO-TRUST',
       cspStatus: 'STRICT-ISOLATED',
       antiTamperActive: true,
+      antiWebshellActive: true,
       prototypePollutionGuarded: true,
       threatsBlocked: this.blockedCount,
       lastPulse: new Date().toLocaleTimeString(),
@@ -173,7 +175,7 @@ class NGFWEngine {
     const style1 = 'color: #38bdf8; font-family: monospace; font-size: 13px; font-weight: bold; background: #0f172a; padding: 6px 12px; border-left: 4px solid #0284c7;';
     const style2 = 'color: #22c55e; font-family: monospace; font-size: 11px;';
     console.log('%c🛡️ [NGFW SHIELD] Next-Gen Web Application Firewall Active', style1);
-    console.log('%c✓ CSP Protocol: STRICT (frame-ancestors: none, object-src: none)\n✓ Anti-Tamper Engine: ARMED\n✓ Zero-Trust Trace: ' + this.traceId, style2);
+    console.log('%c✓ CSP Protocol: STRICT (frame-ancestors: none, object-src: none)\n✓ Anti-Tamper Engine: ARMED\n✓ Anti-Webshell & Terminal Shield: ENFORCED\n✓ Zero-Trust Trace: ' + this.traceId, style2);
   }
 }
 
