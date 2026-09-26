@@ -67,52 +67,77 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
   return (
     <div className="resume-wrapper">
       {/* ==============================================================
-           CYBER TRIAD CINEMATIC BACKGROUND (CIA TRIAD WATERMARK)
+           CYBER TRIAD CINEMATIC ANIMATED BACKGROUND (CIA TRIAD WATERMARK)
            ============================================================== */}
       <div className="cyber-triad-bg" aria-hidden="true">
+        {/* Animated Cyber Matrix Aura */}
+        <div className="cyber-matrix-aura"></div>
+        {/* Animated Cyber Laser Sweep */}
+        <div className="cyber-laser-sweep"></div>
+
         <svg className="cyber-triad-svg" viewBox="0 0 1440 900" fill="none" preserveAspectRatio="xMidYMid slice">
           <defs>
             <linearGradient id="triadBlueRed" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#2563eb" stopOpacity="0.35" />
-              <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.12" />
-              <stop offset="100%" stopColor="#e11d48" stopOpacity="0.32" />
+              <stop offset="0%" stopColor="#2563eb" stopOpacity="0.4" />
+              <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.16" />
+              <stop offset="100%" stopColor="#e11d48" stopOpacity="0.38" />
             </linearGradient>
             <radialGradient id="nodeGlowBlue" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#2563eb" stopOpacity="0.22" />
+              <stop offset="0%" stopColor="#2563eb" stopOpacity="0.35" />
               <stop offset="100%" stopColor="#2563eb" stopOpacity="0" />
             </radialGradient>
             <radialGradient id="nodeGlowRed" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#e11d48" stopOpacity="0.22" />
+              <stop offset="0%" stopColor="#e11d48" stopOpacity="0.35" />
               <stop offset="100%" stopColor="#e11d48" stopOpacity="0" />
             </radialGradient>
+            <linearGradient id="laserBeam" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#2563eb" stopOpacity="0" />
+              <stop offset="30%" stopColor="#38bdf8" stopOpacity="0.8" />
+              <stop offset="70%" stopColor="#e11d48" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#e11d48" stopOpacity="0" />
+            </linearGradient>
           </defs>
 
           {/* Tactical Coordinate Grid Overlay */}
-          <g opacity="0.35">
+          <g opacity="0.45">
             <line x1="720" y1="0" x2="720" y2="900" stroke="#2563eb" strokeWidth="0.8" strokeDasharray="6 6" opacity="0.25" />
             <line x1="0" y1="420" x2="1440" y2="420" stroke="#e11d48" strokeWidth="0.8" strokeDasharray="6 6" opacity="0.18" />
-            <circle cx="720" cy="420" r="320" stroke="#2563eb" strokeWidth="1" strokeDasharray="8 8" opacity="0.15" />
-            <circle cx="720" cy="420" r="460" stroke="#e11d48" strokeWidth="0.8" strokeDasharray="12 12" opacity="0.1" />
+            
+            {/* Rotating Tactical Radar Rings */}
+            <circle className="tactical-ring-inner" cx="720" cy="420" r="320" stroke="#2563eb" strokeWidth="1.2" strokeDasharray="10 8" opacity="0.22" />
+            <circle className="tactical-ring-outer" cx="720" cy="420" r="460" stroke="#e11d48" strokeWidth="1" strokeDasharray="14 10" opacity="0.16" />
+            
+            {/* Radar Scanning Sweep Beam */}
+            <g className="radar-sweep-group">
+              <line x1="720" y1="420" x2="1180" y2="420" stroke="url(#laserBeam)" strokeWidth="1.5" opacity="0.3" />
+            </g>
           </g>
 
           {/* THE CYBER CIA TRIAD */}
           <g className="triad-geometry">
-            <polygon points="720,110 380,690 1060,690" stroke="url(#triadBlueRed)" strokeWidth="2.5" fill="rgba(37, 99, 235, 0.015)" />
-            <polygon points="720,160 425,650 1015,650" stroke="#3b82f6" strokeWidth="1" strokeDasharray="8 6" opacity="0.2" />
-            <polygon points="720,650 550,380 890,380" stroke="#e11d48" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.18" />
+            <polygon points="720,110 380,690 1060,690" stroke="url(#triadBlueRed)" strokeWidth="2.5" fill="rgba(37, 99, 235, 0.02)" />
+            {/* Animated energy pulse traversing the perimeter */}
+            <polygon className="triad-energy-stream" points="720,110 380,690 1060,690" stroke="#38bdf8" strokeWidth="2.8" fill="none" strokeDasharray="120 400" />
+            <polygon points="720,160 425,650 1015,650" stroke="#3b82f6" strokeWidth="1" strokeDasharray="8 6" opacity="0.22" />
+            <polygon points="720,650 550,380 890,380" stroke="#e11d48" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.2" />
 
-            {/* Triad Node Glows */}
-            <circle cx="720" cy="110" r="85" fill="url(#nodeGlowBlue)" />
-            <circle cx="380" cy="690" r="85" fill="url(#nodeGlowRed)" />
-            <circle cx="1060" cy="690" r="85" fill="url(#nodeGlowBlue)" />
+            {/* Pulsing Triad Node Halos */}
+            <circle className="node-halo-pulse-1" cx="720" cy="110" r="95" fill="url(#nodeGlowBlue)" />
+            <circle className="node-halo-pulse-2" cx="380" cy="690" r="95" fill="url(#nodeGlowRed)" />
+            <circle className="node-halo-pulse-3" cx="1060" cy="690" r="95" fill="url(#nodeGlowBlue)" />
 
-            {/* Vertex Nodes */}
+            {/* Vertex Nodes with Ping Waves */}
+            <circle className="node-ping-1" cx="720" cy="110" r="16" fill="none" stroke="#2563eb" strokeWidth="1.5" opacity="0.8" />
             <circle cx="720" cy="110" r="8" fill="#1d4ed8" stroke="#ffffff" strokeWidth="2.5" />
+
+            <circle className="node-ping-2" cx="380" cy="690" r="16" fill="none" stroke="#e11d48" strokeWidth="1.5" opacity="0.8" />
             <circle cx="380" cy="690" r="8" fill="#e11d48" stroke="#ffffff" strokeWidth="2.5" />
+
+            <circle className="node-ping-3" cx="1060" cy="690" r="16" fill="none" stroke="#2563eb" strokeWidth="1.5" opacity="0.8" />
             <circle cx="1060" cy="690" r="8" fill="#2563eb" stroke="#ffffff" strokeWidth="2.5" />
 
             {/* CIA Labels in Monospace */}
-            <text x="720" y="85" textAnchor="middle" fill="#1d4ed8" fontFamily="'JetBrains Mono', monospace" fontSize="11" fontWeight="700" letterSpacing="3">
+            <text x="720" y="82" textAnchor="middle" fill="#1d4ed8" fontFamily="'JetBrains Mono', monospace" fontSize="11" fontWeight="700" letterSpacing="3">
               [ CONFIDENTIALITY // NODE_01 ]
             </text>
             <text x="320" y="730" textAnchor="middle" fill="#e11d48" fontFamily="'JetBrains Mono', monospace" fontSize="11" fontWeight="700" letterSpacing="3">
@@ -122,7 +147,7 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
               [ AVAILABILITY // NODE_03 ]
             </text>
 
-            <text x="720" y="425" textAnchor="middle" fill="#64748b" fontFamily="'JetBrains Mono', monospace" fontSize="11" letterSpacing="4" opacity="0.5">
+            <text x="720" y="425" textAnchor="middle" fill="#64748b" fontFamily="'JetBrains Mono', monospace" fontSize="11" letterSpacing="4" opacity="0.6">
               NETSECURITY TRACK // ZERO TRUST CORE // IEEE 802.1Q
             </text>
           </g>
@@ -286,30 +311,55 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
               <span>{profile.location}</span>
             </div>
 
-            <div className="contact-pill">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            {/* LinkedIn Profile */}
+            <div className="contact-pill" style={{ background: 'rgba(10, 102, 194, 0.08)', borderColor: 'rgba(10, 102, 194, 0.3)' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#0a66c2">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
               </svg>
-              <a href={`tel:${profile.phone}`}>{profile.phone}</a>
+              <a
+                href={profile.linkedinUrl || "https://www.linkedin.com/in/ramel-joshua-cave/"}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: '#0a66c2', fontWeight: 700, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}
+              >
+                <span>LinkedIn Profile</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
               <button
                 className="btn btn-print"
                 style={{ padding: '2px 8px', fontSize: '0.72rem', marginLeft: '6px' }}
-                onClick={() => copyToClipboard(profile.phone, 'Phone')}
+                onClick={() => copyToClipboard(profile.linkedinUrl || "https://www.linkedin.com/in/ramel-joshua-cave/", 'LinkedIn URL')}
               >
                 Copy
               </button>
             </div>
 
-            <div className="contact-pill">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                <polyline points="22,6 12,13 2,6"></polyline>
+            {/* GitHub Portfolio */}
+            <div className="contact-pill" style={{ background: 'rgba(15, 23, 42, 0.05)', borderColor: 'rgba(15, 23, 42, 0.2)' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
               </svg>
-              <a href={`mailto:${profile.email}`}>{profile.email}</a>
+              <a
+                href={profile.githubUrl || "https://github.com/CaveJoshua"}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: 'var(--text-primary)', fontWeight: 700, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}
+              >
+                <span>GitHub</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
               <button
                 className="btn btn-print"
                 style={{ padding: '2px 8px', fontSize: '0.72rem', marginLeft: '6px' }}
-                onClick={() => copyToClipboard(profile.email, 'Email')}
+                onClick={() => copyToClipboard(profile.githubUrl || "https://github.com/CaveJoshua", 'GitHub URL')}
               >
                 Copy
               </button>
@@ -849,14 +899,20 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
             <div className="personal-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <h3 style={{ fontSize: '1.15rem', marginBottom: '0.5rem', fontWeight: 700 }}>Character References</h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', margin: '0.75rem 0 1.25rem' }}>
-                Professional and academic character references are readily verified and available upon request.
+                Professional and academic character references are readily verified and available upon request via LinkedIn.
               </p>
-              <button
+              <a
+                href={profile.linkedinUrl || "https://www.linkedin.com/in/ramel-joshua-cave/"}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-primary"
-                onClick={() => copyToClipboard(profile.email, 'Contact Email')}
+                style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', textDecoration: 'none' }}
               >
-                Request References
-              </button>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                </svg>
+                <span>Connect via LinkedIn</span>
+              </a>
             </div>
           </div>
         </section>

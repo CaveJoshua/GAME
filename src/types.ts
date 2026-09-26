@@ -7,8 +7,10 @@ export type AppStage = 'game' | 'loading' | 'resume';
 export interface ProfileData {
   name: string;
   location: string;
-  phone: string;
-  email: string;
+  phone?: string;
+  email?: string;
+  linkedinUrl?: string;
+  githubUrl?: string;
   credlyUrl: string;
   title: string;
   about: string;

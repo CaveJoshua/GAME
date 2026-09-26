@@ -12,7 +12,7 @@
 }
 
 /* ==============================================================
-   CYBER TRIAD CINEMATIC BACKGROUND
+   CYBER TRIAD CINEMATIC ANIMATED BACKGROUND
    ============================================================== */
 .cyber-triad-bg {
   position: absolute;
@@ -23,9 +23,48 @@
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
-  opacity: 0.9;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0, 0) 100%);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0, 0) 100%);
+  opacity: 0.95;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.85) 60%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.85) 60%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* Animated Cyber Matrix Ambient Aura */
+.cyber-matrix-aura {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(37, 99, 235, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 75% 65%, rgba(225, 29, 72, 0.07) 0%, transparent 45%),
+    radial-gradient(circle at 50% 10%, rgba(56, 189, 248, 0.06) 0%, transparent 40%);
+  animation: auraBreath 12s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes auraBreath {
+  0% { transform: scale(1) translateY(0); opacity: 0.7; }
+  50% { transform: scale(1.04) translateY(-12px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 0.7; }
+}
+
+/* Animated Cyber Laser Sweep Beam */
+.cyber-laser-sweep {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(37, 99, 235, 0.4) 25%, rgba(56, 189, 248, 0.8) 50%, rgba(225, 29, 72, 0.5) 75%, transparent 100%);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.45), 0 0 30px rgba(37, 99, 235, 0.25);
+  animation: laserScan 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes laserScan {
+  0% { top: 0%; opacity: 0; }
+  10% { opacity: 0.85; }
+  90% { opacity: 0.85; }
+  100% { top: 100%; opacity: 0; }
 }
 
 .cyber-triad-svg {
@@ -34,8 +73,86 @@
   height: 100%;
 }
 
+/* Triad Geometry Floating Breathing */
 .triad-geometry {
   transform-origin: 720px 450px;
+  animation: triadFloat 10s ease-in-out infinite;
+}
+
+@keyframes triadFloat {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-10px) scale(1.012); }
+}
+
+/* Energy stream flowing along triad perimeter */
+.triad-energy-stream {
+  animation: energyFlow 6s linear infinite;
+  filter: drop-shadow(0 0 5px #38bdf8);
+}
+
+@keyframes energyFlow {
+  to {
+    stroke-dashoffset: -520;
+  }
+}
+
+/* Rotating Radar Rings */
+.tactical-ring-inner {
+  transform-origin: 720px 420px;
+  animation: rotateClockwise 45s linear infinite;
+}
+
+.tactical-ring-outer {
+  transform-origin: 720px 420px;
+  animation: rotateCounter 60s linear infinite;
+}
+
+@keyframes rotateClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotateCounter {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* Radar Sweep Line */
+.radar-sweep-group {
+  transform-origin: 720px 420px;
+  animation: rotateClockwise 12s linear infinite;
+}
+
+/* Node Glow Halo Breathing */
+.node-halo-pulse-1 {
+  animation: haloPulse 4s ease-in-out infinite alternate;
+}
+.node-halo-pulse-2 {
+  animation: haloPulse 4s ease-in-out infinite alternate 1.3s;
+}
+.node-halo-pulse-3 {
+  animation: haloPulse 4s ease-in-out infinite alternate 2.6s;
+}
+
+@keyframes haloPulse {
+  0% { opacity: 0.3; transform: scale(0.95); }
+  100% { opacity: 0.75; transform: scale(1.15); }
+}
+
+/* Node Ping Expand Waves */
+.node-ping-1, .node-ping-2, .node-ping-3 {
+  animation: pingWave 2.8s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.node-ping-2 {
+  animation-delay: 0.9s;
+}
+.node-ping-3 {
+  animation-delay: 1.8s;
+}
+
+@keyframes pingWave {
+  0% { r: 8px; opacity: 0.9; }
+  100% { r: 24px; opacity: 0; }
 }
 
 /* Container */
