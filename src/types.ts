@@ -9,6 +9,7 @@ export interface ProfileData {
   location: string;
   phone: string;
   email: string;
+  credlyUrl: string;
   title: string;
   about: string;
   dateOfBirth: string;
@@ -41,6 +42,29 @@ export interface SeminarItem {
   highlight?: boolean;
   award?: string;
   badge?: string;
+  imageUrl?: string;
+  imageCaption?: string;
+}
+
+export interface Hack4GovGalleryItem {
+  id: string;
+  title: string;
+  competition: string;
+  date: string;
+  venue: string;
+  award?: string;
+  badge: string;
+  description: string;
+  imageUrl: string;
+  alt: string;
+}
+
+export interface CredlyBadgeItem {
+  id: string;
+  name: string;
+  issuer: string;
+  imageUrl: string;
+  verifyUrl: string;
 }
 
 export interface BootDiagnosticItem {

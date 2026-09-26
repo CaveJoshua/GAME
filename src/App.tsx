@@ -1,24 +1,16 @@
 import React, { useState } from 'react';
-import { AppStage } from './types';
-import { GameScreen } from './components/GameScreen';
-import { LoadingAnimation } from './components/LoadingAnimation';
+import { OriginalGame } from './components/OriginalGame';
 import { ResumeScreen } from './components/ResumeScreen';
 import './styles/theme.css';
 
 export const App: React.FC = () => {
-  const [stage, setStage] = useState<AppStage>('game');
+  const [stage, setStage] = useState<'game' | 'resume'>('game');
 
   return (
     <div className="app-root">
-      {stage === 'game' && (
-        <GameScreen onComplete={() => setStage('loading')} />
-      )}
-
-      {stage === 'loading' && (
-        <LoadingAnimation onComplete={() => setStage('resume')} />
-      )}
-
-      {stage === 'resume' && (
+      {stage === 'game' ? (
+        <OriginalGame onComplete={() => setStage('resume')} />
+      ) : (
         <ResumeScreen onRestartGame={() => setStage('game')} />
       )}
     </div>

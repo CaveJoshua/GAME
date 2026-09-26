@@ -1,0 +1,278 @@
+/* ==============================================================
+   ORIGINAL GAME & SYSTEM BOOT SCREEN STYLES (AS IS FROM ORIGINAL CODE)
+   ============================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700;800&display=swap');
+
+:root {
+  --bg: #0c0b0a;
+  --term-beige: #d8d4c5;
+  --term-dim: #706c62;
+  --term-dark: #1c1b16;
+  --term-cyan: #b2e6e8;
+  --term-green: #90d89e;
+  --term-crimson: #c94040;
+  --font-mono: 'Share Tech Mono', monospace;
+  --font-hud: 'Rajdhani', sans-serif;
+}
+
+.original-game-wrapper {
+  background-color: var(--bg);
+  color: var(--term-beige);
+  font-family: var(--font-mono);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* CRT Scanline & Lens Vignette Overlays */
+.original-game-wrapper::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(216, 212, 197, 0.035),
+    rgba(216, 212, 197, 0.035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 50;
+}
+
+.original-game-wrapper::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.92), inset 0 0 40px rgba(12, 11, 10, 0.85);
+  pointer-events: none;
+  z-index: 51;
+}
+
+#gameCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#damage-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0;
+  background: radial-gradient(circle, transparent 40%, rgba(201, 64, 64, 0.35) 100%);
+  transition: opacity 0.15s ease-out;
+}
+
+/* ==============================================================
+   SYSTEM DIAGNOSTIC BOOT TERMINAL SCREEN
+   ============================================================== */
+#system-boot-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #0b0a09;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: clamp(28px, 6vw, 64px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+#system-boot-screen.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Fine Pixel Matrix Background */
+.screen-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(216, 212, 197, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(216, 212, 197, 0.035) 1px, transparent 1px);
+  background-size: 8px 8px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Original Hardware Watermark */
+.terminal-watermark {
+  position: absolute;
+  right: clamp(5%, 12vw, 18%);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.terminal-watermark svg {
+  width: clamp(220px, 34vw, 380px);
+  height: clamp(220px, 34vw, 380px);
+}
+
+.watermark-title {
+  font-family: var(--font-hud);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  letter-spacing: 0.2em;
+  color: var(--term-beige);
+  margin-top: -14px;
+}
+
+.watermark-sub {
+  font-family: var(--font-hud);
+  font-size: clamp(0.72rem, 1.1vw, 1rem);
+  letter-spacing: 0.3em;
+  color: var(--term-beige);
+  text-transform: uppercase;
+  margin-top: -2px;
+}
+
+/* Boot Content Stream */
+.boot-content {
+  position: relative;
+  z-index: 10;
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Terminal Header Strip */
+.boot-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--font-hud);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.boot-title {
+  font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--term-cyan);
+  text-shadow: 0 0 12px rgba(178, 230, 232, 0.4);
+}
+
+.boot-subtitle {
+  font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  color: #dfdbcd;
+}
+
+.boot-counter {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.16em;
+  color: var(--term-green);
+  margin-left: auto;
+}
+
+/* Terminal Telemetry Lines */
+.boot-lines-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: clamp(0.78rem, 1.5vw, 0.92rem);
+  letter-spacing: 0.07em;
+  color: #dfdcd0;
+  line-height: 1.55;
+}
+
+.boot-line {
+  white-space: pre-wrap;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.1s ease, transform 0.1s ease;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.boot-line.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.boot-line.green {
+  color: #a4e5af;
+}
+
+.boot-line.complete {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Live Semester 0-100% Counter Highlight */
+.sem-counter-badge {
+  color: var(--term-cyan);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-left: 6px;
+  text-shadow: 0 0 8px rgba(178, 230, 232, 0.5);
+}
+
+.sem-counter-badge.done {
+  color: #9bf3af;
+  text-shadow: 0 0 10px rgba(155, 243, 175, 0.6);
+}
+
+/* Terminal Block Cursor */
+.boot-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background-color: var(--term-beige);
+  margin-left: 6px;
+  vertical-align: middle;
+  animation: cursorBlink 0.6s steps(2, start) infinite;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Subtle Skip Button */
+.original-skip-btn {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  z-index: 300;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  padding: 6px 14px;
+  background: rgba(12, 11, 10, 0.7);
+  border: 1px solid rgba(216, 212, 197, 0.25);
+  color: var(--term-beige);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.original-skip-btn:hover {
+  background: var(--term-beige);
+  color: var(--term-dark);
+  border-color: var(--term-beige);
+}
