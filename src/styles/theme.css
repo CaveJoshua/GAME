@@ -4,20 +4,27 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap');
 
 :root {
-  /* Core Base Colors */
-  --bg-canvas: #fafafc;
+  /* Core Base Colors - Plain Professional White */
+  --bg-canvas: #ffffff;
   --bg-card: #ffffff;
-  --bg-card-elevated: #f4f4f7;
+  --bg-card-elevated: #ffffff;
   --surface-card: #ffffff;
-  --surface-bg: #f8fafc;
-  --bg-contrast: #09090b;
-  --bg-contrast-soft: #18181b;
+  --surface-bg: #ffffff;
+  --bg-contrast: #000000;
+  --bg-contrast-soft: #111827;
 
-  /* Typography Colors */
-  --text-primary: #09090b;
-  --text-secondary: #3f3f46;
-  --text-muted: #71717a;
+  /* Typography Colors - Neat All Black Professional */
+  --text-primary: #000000;
+  --text-secondary: #111827;
+  --text-muted: #374151;
   --text-inverse: #ffffff;
+
+  /* University of the Cordilleras Brand Green */
+  --uc-green: #005a36;
+  --uc-green-dark: #004225;
+  --uc-green-light: #15803d;
+  --uc-green-subtle: rgba(0, 90, 54, 0.05);
+  --uc-green-border: rgba(0, 90, 54, 0.32);
 
   /* Imperial Gold Accents (Medals & 1st Place) */
   --gold-primary: #c59b27;

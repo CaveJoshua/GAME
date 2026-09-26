@@ -33,8 +33,8 @@ export const PortfolioNav: React.FC<PortfolioNavProps> = ({
           <div className="brand-text">
             <h1 className="brand-name">{profile.name}</h1>
             <span className="brand-track-badge">
-              <span className="track-pulse-dot"></span>
-              <span className="brand-track-text">BSIT • NETSECURITY TRACK</span>
+              <span className="track-pulse-dot" style={{ background: '#005a36' }}></span>
+              <span className="brand-track-text">BSIT • INFORMATION TECHNOLOGY</span>
             </span>
           </div>
         </div>

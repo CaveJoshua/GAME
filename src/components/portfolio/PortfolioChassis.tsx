@@ -9,10 +9,10 @@ import {
   architectureProjects,
 } from '../../data/resumeData';
 import { ngfw, NGFWStatus } from '../../security/ngfw';
+import { cppMemorySecurity } from '../../security/cppMemorySecurity';
 
 import { useGpuOptimizer } from './useGpuOptimizer';
 import { ErrorBoundary } from './ErrorBoundary';
-import { CiaTriadCanvas } from './CiaTriadCanvas';
 import { PortfolioNav } from './PortfolioNav';
 import { HeroSection } from './HeroSection';
 import { TrackShowcase } from './TrackShowcase';
@@ -27,6 +27,7 @@ import { ReferencesSection } from './ReferencesSection';
 import { FooterSection } from './FooterSection';
 import { NgfwDefenseModal } from './NgfwDefenseModal';
 import { CertificateLightboxModal } from './CertificateLightboxModal';
+import { CtfTerminalShell } from './CtfTerminalShell';
 
 interface PortfolioChassisProps {
   onRestartGame: () => void;
@@ -34,12 +35,15 @@ interface PortfolioChassisProps {
 
 /**
  * PortfolioChassis - Master Architectural Orchestrator & State Chassis
- * Features component isolation, GPU compute optimization, Tailwind CSS architecture,
- * live state synchronization, and enterprise zero-trust defense integration.
+ * Features plain white professional background, C++ WebAssembly memory security,
+ * anti-inspection CTF defensive lockdown, and live zero-trust synchronization.
  */
 export const PortfolioChassis: React.FC<PortfolioChassisProps> = ({ onRestartGame }) => {
   // GPU Compute & Fidelity Profiler
   const gpu = useGpuOptimizer();
+
+  // C++ Memory Security & Anti-Inspection Lockdown State
+  const [isLockedDown, setIsLockedDown] = useState<boolean>(false);
 
   // NGFW & Telemetry State
   const [ngfwStatus, setNgfwStatus] = useState<NGFWStatus | null>(null);
@@ -64,6 +68,20 @@ export const PortfolioChassis: React.FC<PortfolioChassisProps> = ({ onRestartGam
     sync();
     // Expose sync globally for live devtools inspection
     (window as any).__syncPortfolioState__ = sync;
+
+    // Arm C++ WebAssembly Memory Guard and Anti-Inspection Traps
+    cppMemorySecurity.init((locked) => {
+      setIsLockedDown(locked);
+      if (locked) {
+        ngfw.recordEvent({
+          timestamp: new Date().toLocaleTimeString(),
+          type: 'ANTI_INSPECTION_TRIP',
+          severity: 'HIGH',
+          details: 'C++ WebAssembly memory guard tripped: hardware key or force-inspection probe intercepted',
+          source: 'CppMemorySecurityEngine',
+        });
+      }
+    });
   }, [sync]);
 
   // Toast Dispatcher
@@ -112,15 +130,20 @@ export const PortfolioChassis: React.FC<PortfolioChassisProps> = ({ onRestartGam
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  // If force-inspection or devtools tampering is detected, empty DOM and render CTF shell
+  if (isLockedDown) {
+    return (
+      <CtfTerminalShell
+        onUnlockSession={() => {
+          setIsLockedDown(false);
+          showToast('Session unlocked: C++ memory canary verified.');
+        }}
+      />
+    );
+  }
+
   return (
     <div className="resume-wrapper">
-      {/* ==============================================================
-           LAYER 0: GPU-OPTIMIZED CIA TRIAD ANIMATED BACKGROUND
-           ============================================================== */}
-      <ErrorBoundary fallbackTitle="CIA_TRIAD_CANVAS">
-        <CiaTriadCanvas gpu={gpu} />
-      </ErrorBoundary>
-
       {/* ==============================================================
            LAYER 1: TOP NAVIGATION BAR
            ============================================================== */}
@@ -137,10 +160,10 @@ export const PortfolioChassis: React.FC<PortfolioChassisProps> = ({ onRestartGam
       </ErrorBoundary>
 
       {/* ==============================================================
-           LAYER 2: MAIN RESUME CONTENT CONTAINER
+           LAYER 2: MAIN RESUME CONTENT CONTAINER (PLAIN WHITE PROFESSIONAL)
            ============================================================== */}
       <main className="container relative z-10">
-        {/* Executive Hero & Clearance Showcase */}
+        {/* Executive Hero Showcase */}
         <ErrorBoundary fallbackTitle="HERO_SECTION">
           <HeroSection
             profile={profile}
@@ -180,7 +203,7 @@ export const PortfolioChassis: React.FC<PortfolioChassisProps> = ({ onRestartGam
           <FeaturedProjectSection projects={architectureProjects} />
         </ErrorBoundary>
 
-        {/* Educational Attainment Timeline */}
+        {/* Educational Attainment Timeline with UC Green Liner & Seal */}
         <ErrorBoundary fallbackTitle="EDUCATION_SECTION">
           <EducationSection educationList={educationList} />
         </ErrorBoundary>

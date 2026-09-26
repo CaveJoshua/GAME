@@ -27,9 +27,9 @@ export const ReferencesSection: React.FC<ReferencesSectionProps> = ({ profile })
                 style={{
                   width: '56px',
                   height: '56px',
-                  borderRadius: '50%',
+                  borderRadius: 'var(--radius-md)',
                   objectFit: 'cover',
-                  objectPosition: 'top center',
+                  objectPosition: 'center',
                   border: '2px solid var(--blue-border)',
                   boxShadow: '0 4px 12px rgba(2, 132, 199, 0.15)',
                   flexShrink: 0

@@ -6,7 +6,7 @@ export const profile: ProfileData = {
   linkedinUrl: "https://www.linkedin.com/in/rameljoshua",
   githubUrl: "https://github.com/CaveJoshua",
   credlyUrl: "https://www.credly.com/users/ramel-joshua-o-cave/edit/badges/credly",
-  title: "Information Technology Professional • Network & Cyber Security Specialist",
+  title: "Information Technology",
   about: "Bachelor of Science in Information Technology (Network & Security Track) graduate from the University of the Cordilleras, 1st Place at Hack4Gov. Certified in Computer Systems Servicing & Networking (NC II) with extensive expertise in CISCO LAN routing & switching (CCNA 1-4), penetration testing toolchains (Kali Linux, Ghidra, Wireshark, Burp Suite), Python data analytics, C# Unity, React Router v7, PostgreSQL indexing, and cloud deployments.",
   dateOfBirth: "July 15, 2004",
   age: 21,

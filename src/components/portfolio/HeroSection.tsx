@@ -57,9 +57,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           {/* Main Name & Titles */}
           <h1 className="hero-name">{profile.name}</h1>
           <div className="hero-title">
-            <span className="title-red">Information Technology Specialist</span>
-            <span className="title-sep">•</span>
-            <span className="title-blue">Network & Cyber Security Engineering</span>
+            <span style={{ color: '#000000', fontWeight: 800, letterSpacing: '-0.02em' }}>
+              Information Technology
+            </span>
           </div>
           <p className="hero-about">{profile.about}</p>
 
@@ -167,12 +167,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   className="portrait-img"
                   loading="eager"
                 />
-                <div className="portrait-scan-line"></div>
               </div>
               <div className="portrait-footer">
                 <div className="portrait-meta-name">{profile.name}</div>
-                <div className="portrait-meta-title">BSIT • NETWORK & SECURITY SPECIALIST</div>
-                <div className="portrait-meta-id">AUTHENTICATED IDENTITY // 2026</div>
+                <div className="portrait-meta-title" style={{ color: '#005a36', fontWeight: 700 }}>
+                  INFORMATION TECHNOLOGY
+                </div>
+                <div className="portrait-meta-id">UNIVERSITY OF THE CORDILLERAS</div>
               </div>
             </div>
           </div>

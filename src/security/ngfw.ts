@@ -12,7 +12,7 @@
 
 export interface SecurityEvent {
   timestamp: string;
-  type: 'CSP_VIOLATION' | 'INJECTION_ATTEMPT' | 'PROTOTYPE_POLLUTION' | 'TAMPER_DETECTED' | 'HEURISTIC_FLAG';
+  type: 'CSP_VIOLATION' | 'INJECTION_ATTEMPT' | 'PROTOTYPE_POLLUTION' | 'TAMPER_DETECTED' | 'HEURISTIC_FLAG' | 'ANTI_INSPECTION_TRIP';
   severity: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
   details: string;
   source?: string;
