@@ -44,7 +44,6 @@ export interface SeminarItem {
   badge?: string;
   imageUrl?: string;
   imageCaption?: string;
-  pdfUrl?: string;
 }
 
 export interface Hack4GovGalleryItem {
@@ -58,7 +57,6 @@ export interface Hack4GovGalleryItem {
   description: string;
   imageUrl: string;
   alt: string;
-  pdfUrl?: string;
 }
 
 export interface CredlyBadgeItem {

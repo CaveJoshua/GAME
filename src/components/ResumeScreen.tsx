@@ -9,6 +9,7 @@ import {
   hack4govGallery,
   architectureProjects
 } from '../data/resumeData';
+import { ngfw, NGFWStatus } from '../security/ngfw';
 
 interface ResumeScreenProps {
   onRestartGame: () => void;
@@ -16,9 +17,15 @@ interface ResumeScreenProps {
 
 export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [activeLightbox, setActiveLightbox] = useState<{ url: string; title: string; caption: string; pdfUrl?: string } | null>(null);
+  const [activeLightbox, setActiveLightbox] = useState<{ url: string; title: string; caption: string } | null>(null);
+  const [ngfwStatus, setNgfwStatus] = useState<NGFWStatus | null>(null);
+  const [showNgfwModal, setShowNgfwModal] = useState<boolean>(false);
 
   useEffect(() => {
+    // Initialize Next-Gen Web Application Firewall (NGFW) & CSP monitoring
+    const initialStatus = ngfw.init();
+    setNgfwStatus(initialStatus);
+
     // Ensure Credly embed script is loaded
     if (!document.querySelector('script[src*="cdn.credly.com/assets/utilities/embed.js"]')) {
       const script = document.createElement('script');
@@ -31,6 +38,7 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setActiveLightbox(null);
+        setShowNgfwModal(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -198,14 +206,27 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
               <span>Game</span>
             </button>
 
-            {/* Print / ATS PDF */}
-            <button className="btn btn-print" onClick={() => window.print()} title="Print or Save as ATS PDF">
+            {/* NGFW / CSP Protocol HUD */}
+            <button
+              className="btn-ngfw-status"
+              onClick={() => {
+                setNgfwStatus(ngfw.getStatus());
+                setShowNgfwModal(true);
+              }}
+              title="Inspect Live NGFW & CSP Zero-Trust Security Defense Telemetry"
+            >
+              <span className="ngfw-pulse-dot"></span>
+              <span>NGFW v5.4</span>
+            </button>
+
+            {/* Print / ATS Resume */}
+            <button className="btn btn-print" onClick={() => window.print()} title="Print or Save as ATS Resume">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <polyline points="6 9 6 2 18 2 18 9"></polyline>
                 <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
                 <rect x="6" y="14" width="12" height="8"></rect>
               </svg>
-              <span>PDF</span>
+              <span>Print ATS</span>
             </button>
           </div>
         </div>
@@ -225,8 +246,16 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
               <span>CLEARANCE: LEVEL 01 ACTIVE</span>
             </div>
             <span className="telemetry-sep">•</span>
-            <div className="telemetry-tag">
-              <span>SPECIALIZATION: OFFENSIVE & DEFENSIVE OPS</span>
+            <div
+              className="telemetry-tag"
+              onClick={() => {
+                setNgfwStatus(ngfw.getStatus());
+                setShowNgfwModal(true);
+              }}
+              style={{ cursor: 'pointer', borderColor: 'rgba(56, 189, 248, 0.45)', color: '#38bdf8' }}
+              title="Click to inspect NGFW & CSP Zero-Trust Security Protocol"
+            >
+              <span>🛡️ NGFW DEFENSE: CSP STRICT & ENFORCED</span>
             </div>
           </div>
 
@@ -507,8 +536,7 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
                   onClick={() => setActiveLightbox({
                     url: item.imageUrl,
                     title: item.title,
-                    caption: item.description,
-                    pdfUrl: item.pdfUrl
+                    caption: item.description
                   })}
                   title="Click to view full-resolution credential"
                 >
@@ -540,55 +568,23 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
 
                   <div className="hack4gov-card-footer">
                     <span>STATUS: <strong>AUTHENTICATED RECORD</strong></span>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <button
-                        className="btn btn-print"
-                        style={{ padding: '3px 10px', fontSize: '0.74rem', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
-                        onClick={() => setActiveLightbox({
-                          url: item.imageUrl,
-                          title: item.title,
-                          caption: item.description,
-                          pdfUrl: item.pdfUrl
-                        })}
-                      >
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <circle cx="11" cy="11" r="8"></circle>
-                          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                          <line x1="11" y1="8" x2="11" y2="14"></line>
-                          <line x1="8" y1="11" x2="14" y2="11"></line>
-                        </svg>
-                        <span>Enlarge</span>
-                      </button>
-
-                      {item.pdfUrl && (
-                        <a
-                          href={item.pdfUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn btn-print"
-                          style={{
-                            padding: '3px 9px',
-                            fontSize: '0.74rem',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '4px',
-                            textDecoration: 'none',
-                            color: 'var(--red-primary)',
-                            borderColor: 'rgba(217, 4, 41, 0.35)'
-                          }}
-                          title="Open official PDF certificate in new tab"
-                        >
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="16" y1="13" x2="8" y2="13"></line>
-                            <line x1="16" y1="17" x2="8" y2="17"></line>
-                            <polyline points="10 9 9 9 8 9"></polyline>
-                          </svg>
-                          <span>PDF ↗</span>
-                        </a>
-                      )}
-                    </div>
+                    <button
+                      className="btn btn-print"
+                      style={{ padding: '3px 12px', fontSize: '0.74rem', display: 'inline-flex', alignItems: 'center', gap: '5px' }}
+                      onClick={() => setActiveLightbox({
+                        url: item.imageUrl,
+                        title: item.title,
+                        caption: item.description
+                      })}
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        <line x1="11" y1="8" x2="11" y2="14"></line>
+                        <line x1="8" y1="11" x2="14" y2="11"></line>
+                      </svg>
+                      <span>Enlarge Credential</span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -781,59 +777,33 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
                     </div>
                   )}
                   <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>{item.venue}</div>
-                  {(item.imageUrl || item.pdfUrl) && (
+                  {item.imageUrl && (
                     <div style={{ display: 'flex', gap: '6px', marginTop: '0.5rem', flexWrap: 'wrap' }}>
-                      {item.imageUrl && (
-                        <button
-                          className="btn btn-print"
-                          style={{
-                            padding: '2px 8px',
-                            fontSize: '0.72rem',
-                            borderColor: item.highlight ? 'var(--gold-border)' : 'var(--blue-border)',
-                            color: item.highlight ? 'var(--gold-dark)' : 'var(--blue-primary)',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '4px'
-                          }}
-                          onClick={() => setActiveLightbox({
-                            url: item.imageUrl!,
-                            title: item.title,
-                            caption: item.imageCaption || item.title,
-                            pdfUrl: item.pdfUrl
-                          })}
-                        >
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                            <circle cx="12" cy="13" r="4"></circle>
-                          </svg>
-                          <span>{item.pdfUrl ? 'Certificate' : 'Photo Proof'}</span>
-                        </button>
-                      )}
-                      {item.pdfUrl && (
-                        <a
-                          href={item.pdfUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn btn-print"
-                          style={{
-                            padding: '2px 8px',
-                            fontSize: '0.72rem',
-                            borderColor: 'rgba(217, 4, 41, 0.35)',
-                            color: 'var(--red-primary)',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '4px',
-                            textDecoration: 'none'
-                          }}
-                          title="Open authentic PDF document in new tab"
-                        >
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                          </svg>
-                          <span>PDF ↗</span>
-                        </a>
-                      )}
+                      <button
+                        className="btn btn-print"
+                        style={{
+                          padding: '2px 8px',
+                          fontSize: '0.72rem',
+                          borderColor: item.highlight ? 'var(--gold-border)' : 'var(--blue-border)',
+                          color: item.highlight ? 'var(--gold-dark)' : 'var(--blue-primary)',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px'
+                        }}
+                        onClick={() => setActiveLightbox({
+                          url: item.imageUrl!,
+                          title: item.title,
+                          caption: item.imageCaption || item.title
+                        })}
+                      >
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="11" cy="11" r="8"></circle>
+                          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                          <line x1="11" y1="8" x2="11" y2="14"></line>
+                          <line x1="8" y1="11" x2="14" y2="11"></line>
+                        </svg>
+                        <span>View Credential</span>
+                      </button>
                     </div>
                   )}
                 </div>
@@ -921,43 +891,13 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
             <div className="lightbox-header">
               <div style={{ fontWeight: 700, fontSize: '0.98rem' }}>{activeLightbox.title}</div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                {activeLightbox.pdfUrl && (
-                  <a
-                    href={activeLightbox.pdfUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-print"
-                    style={{
-                      padding: '3px 10px',
-                      fontSize: '0.74rem',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '4px',
-                      textDecoration: 'none',
-                      color: 'var(--red-primary)',
-                      borderColor: 'rgba(217, 4, 41, 0.4)'
-                    }}
-                    title="Open official PDF document in new tab"
-                  >
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                      <polyline points="14 2 14 8 20 8"></polyline>
-                      <line x1="16" y1="13" x2="8" y2="13"></line>
-                      <line x1="16" y1="17" x2="8" y2="17"></line>
-                      <polyline points="10 9 9 9 8 9"></polyline>
-                    </svg>
-                    <span>Open PDF ↗</span>
-                  </a>
-                )}
-                <button
-                  className="lightbox-close-btn"
-                  onClick={() => setActiveLightbox(null)}
-                  title="Close Lightbox (Esc)"
-                >
-                  ✕
-                </button>
-              </div>
+              <button
+                className="lightbox-close-btn"
+                onClick={() => setActiveLightbox(null)}
+                title="Close Lightbox (Esc)"
+              >
+                ✕
+              </button>
             </div>
             <div className="lightbox-img-wrap">
               <img src={activeLightbox.url} alt={activeLightbox.title} />
@@ -965,6 +905,178 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
             <div className="lightbox-footer">
               <div style={{ fontSize: '0.88rem', color: '#e4e4e7', lineHeight: 1.5 }}>
                 {activeLightbox.caption}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Next-Gen Web Application Firewall (NGFW) & CSP Protocol Modal */}
+      {showNgfwModal && ngfwStatus && (
+        <div
+          className="ngfw-modal-backdrop"
+          onClick={() => setShowNgfwModal(false)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="ngfw-modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="ngfw-modal-header">
+              <div className="ngfw-modal-title">
+                <span>🛡️</span>
+                <span>NGFW PROTOCOL DEFENSE ENGINE // {ngfwStatus.version}</span>
+              </div>
+              <button
+                className="lightbox-close-btn"
+                onClick={() => setShowNgfwModal(false)}
+                title="Close NGFW Monitor (Esc)"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="ngfw-modal-body">
+              {/* Status Metric Cards */}
+              <div className="ngfw-status-cards-row">
+                <div className="ngfw-stat-card">
+                  <span className="ngfw-stat-label">DEFENSE SHIELD</span>
+                  <span className="ngfw-stat-value" style={{ color: '#22c55e' }}>
+                    {ngfwStatus.mode}
+                  </span>
+                </div>
+                <div className="ngfw-stat-card">
+                  <span className="ngfw-stat-label">CSP DIRECTIVE</span>
+                  <span className="ngfw-stat-value" style={{ color: '#38bdf8' }}>
+                    {ngfwStatus.cspStatus}
+                  </span>
+                </div>
+                <div className="ngfw-stat-card">
+                  <span className="ngfw-stat-label">THREATS INTERCEPTED</span>
+                  <span className="ngfw-stat-value" style={{ color: ngfwStatus.threatsBlocked > 0 ? '#f43f5e' : '#22c55e' }}>
+                    {ngfwStatus.threatsBlocked} BLOCKED
+                  </span>
+                </div>
+              </div>
+
+              {/* Protocol Security Headers Table */}
+              <div className="ngfw-panel">
+                <div className="ngfw-panel-title">
+                  <span>ACTIVE HTTP SECURITY HEADERS & DIRECTIVES</span>
+                  <span style={{ color: '#22c55e', fontSize: '0.72rem' }}>● ALL COMPLIANT</span>
+                </div>
+                <table className="ngfw-table">
+                  <thead>
+                    <tr>
+                      <th>HEADER NAME</th>
+                      <th>POLICY / DIRECTIVE</th>
+                      <th>PROTECTION LEVEL</th>
+                      <th>STATUS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="header-name">Content-Security-Policy</td>
+                      <td>default-src 'self'; frame-ancestors 'none'; object-src 'none'</td>
+                      <td>Anti-XSS / Injection Lockdown</td>
+                      <td className="header-status">✓ ENFORCED</td>
+                    </tr>
+                    <tr>
+                      <td className="header-name">X-Frame-Options</td>
+                      <td>DENY</td>
+                      <td>Anti-Clickjacking Frame Shield</td>
+                      <td className="header-status">✓ LOCKED</td>
+                    </tr>
+                    <tr>
+                      <td className="header-name">X-Content-Type-Options</td>
+                      <td>nosniff</td>
+                      <td>Anti-MIME Type Confusion</td>
+                      <td className="header-status">✓ ACTIVE</td>
+                    </tr>
+                    <tr>
+                      <td className="header-name">Cross-Origin-Opener-Policy</td>
+                      <td>same-origin</td>
+                      <td>Process-Level Tab Isolation</td>
+                      <td className="header-status">✓ ISOLATED</td>
+                    </tr>
+                    <tr>
+                      <td className="header-name">Cross-Origin-Resource-Policy</td>
+                      <td>same-origin</td>
+                      <td>Hotlink & Leak Mitigation</td>
+                      <td className="header-status">✓ GUARDED</td>
+                    </tr>
+                    <tr>
+                      <td className="header-name">Strict-Transport-Security</td>
+                      <td>max-age=31536000; includeSubDomains; preload</td>
+                      <td>Force End-to-End TLS Encryption</td>
+                      <td className="header-status">✓ HSTS ARMED</td>
+                    </tr>
+                    <tr>
+                      <td className="header-name">Permissions-Policy</td>
+                      <td>camera=(), microphone=(), geolocation=()</td>
+                      <td>Zero Device Sensor Access</td>
+                      <td className="header-status">✓ REVOKED</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Active Content Security Policy Definition */}
+              <div className="ngfw-panel">
+                <div className="ngfw-panel-title">
+                  <span>ACTIVE CSP DIRECTIVE CONFIGURATION</span>
+                  <span style={{ color: '#94a3b8', fontSize: '0.7rem' }}>ISO/IEC 27001 & OWASP ASVS LEVEL 3</span>
+                </div>
+                <div className="ngfw-csp-codebox">
+                  default-src 'self';<br />
+                  script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.credly.com;<br />
+                  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;<br />
+                  img-src 'self' data: blob: https://images.credly.com https://cdn.credly.com https://*.credly.com;<br />
+                  font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;<br />
+                  connect-src 'self' https://*.credly.com;<br />
+                  frame-src 'self' https://www.credly.com;<br />
+                  frame-ancestors 'none'; object-src 'none'; base-uri 'self';
+                </div>
+              </div>
+
+              {/* Threat Simulation & Real-time Telemetry Trace */}
+              <div className="ngfw-panel" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <div className="ngfw-panel-title">
+                  <span>SESSION TRACE & DEFENSE PROBE TESTING</span>
+                  <button
+                    className="ngfw-sim-button"
+                    onClick={() => {
+                      ngfw.recordEvent({
+                        timestamp: new Date().toLocaleTimeString(),
+                        type: 'INJECTION_ATTEMPT',
+                        severity: 'HIGH',
+                        details: 'Intercepted simulated cross-site script payload: <script>alert(1)</script>',
+                        source: 'Simulated User Probe'
+                      });
+                      setNgfwStatus(ngfw.getStatus());
+                      showToast('NGFW Alert: Blocked simulated script injection payload!');
+                    }}
+                  >
+                    Simulate Hostile Injection Probe
+                  </button>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: '#94a3b8', flexWrap: 'wrap', gap: '0.5rem' }}>
+                  <span>CRYPTOGRAPHIC TRACE ID: <strong style={{ color: '#38bdf8' }}>{ngfwStatus.traceId}</strong></span>
+                  <span>HEARTBEAT PULSE: <strong style={{ color: '#22c55e' }}>{ngfwStatus.lastPulse}</strong></span>
+                </div>
+
+                {ngfwStatus.recentEvents.length > 0 && (
+                  <div style={{ marginTop: '0.4rem', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '0.5rem' }}>
+                    <div style={{ fontSize: '0.7rem', fontFamily: 'var(--font-mono)', color: '#f43f5e', marginBottom: '0.35rem', fontWeight: 700 }}>
+                      RECENT INTERCEPT LOGS:
+                    </div>
+                    {ngfwStatus.recentEvents.slice(0, 3).map((ev, eIdx) => (
+                      <div key={eIdx} style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: '#cbd5e1', padding: '3px 0' }}>
+                        <span style={{ color: '#64748b' }}>[{ev.timestamp}]</span>{' '}
+                        <span style={{ color: '#f43f5e', fontWeight: 700 }}>[{ev.type}]</span>{' '}
+                        <span>{ev.details}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>

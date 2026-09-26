@@ -92,8 +92,16 @@ export const seminarsAndTrainings: SeminarItem[] = [
     highlight: true,
     award: "1st Place",
     badge: "1ST PLACE",
-    imageUrl: "/images/hack4gov5_2025.png",
-    imageCaption: "Hack4Gov 5 1st Place Team • August 13, 2026"
+    imageUrl: "/images/hack4gov5_2026_cert.png",
+    imageCaption: "Official 1st Place Certificate • Hack for Gov 5 Cordillera Regional Competition • August 13, 2026"
+  },
+  {
+    title: "Accenture Technology Academy - SAP Basis",
+    date: "August 22, 2026",
+    venue: "Accenture Philippines & University of the Cordilleras",
+    badge: "SAP BASIS // 350 HRS",
+    imageUrl: "/images/accenture_academy_cert.png",
+    imageCaption: "Official Certificate of Completion • Accenture Technology Academy (SAP Basis - 350 Hours) • August 22, 2026"
   },
   {
     title: "SAP HANA Training",
@@ -108,19 +116,20 @@ export const seminarsAndTrainings: SeminarItem[] = [
     badge: "AI / ML"
   },
   {
-    title: "Accenture Academy",
-    date: "May 20, 2026",
-    venue: "University of the Cordilleras",
-    badge: "INDUSTRY"
-  },
-  {
     title: "Practical Data Analytics Using Python and Data Visualization",
     date: "March 14, 2026",
     venue: "University of the Cordilleras (CITCS Webinar Series)",
     badge: "ANALYTICS",
     imageUrl: "/images/python_analytics_cert.png",
-    imageCaption: "Certificate of Participation • CITCS Webinar Series: Practical Data Analytics using Python and Data Visualization • March 14, 2026",
-    pdfUrl: "/certificates/python_data_analytics_2026.pdf"
+    imageCaption: "Certificate of Participation • CITCS Webinar Series: Practical Data Analytics using Python and Data Visualization • March 14, 2026"
+  },
+  {
+    title: "Sui Move in Campus",
+    date: "October 23, 2025",
+    venue: "University of the Cordilleras, Baguio City",
+    badge: "WEB3 / SUI",
+    imageUrl: "/images/sui_move_cert.png",
+    imageCaption: "Official Certificate of Completion • Sui Move in Campus Smart Contract Training • October 23, 2025"
   },
   {
     title: "DevFest Baguio 2025",
@@ -128,16 +137,15 @@ export const seminarsAndTrainings: SeminarItem[] = [
     venue: "Baguio Convention and Cultural Center, Baguio City",
     badge: "GOOGLE / GDG",
     imageUrl: "/images/devfest_baguio_cert.png",
-    imageCaption: "Certificate of Participation • DevFest Baguio 2025 • Google Developer Group (GDG) Baguio • October 18, 2025",
-    pdfUrl: "/certificates/devfest_baguio_2025.pdf"
+    imageCaption: "Certificate of Participation • DevFest Baguio 2025 • Google Developer Group (GDG) Baguio • October 18, 2025"
   },
   {
     title: "Hack4Gov Regional Qualifiers",
     date: "October 2, 2025",
     venue: "Paragon Hotel, Baguio City",
     badge: "CYBERSEC",
-    imageUrl: "/images/hack4gov_2025.png",
-    imageCaption: "Hack4Gov Regional Qualifiers Certificate Presentation • October 2, 2025"
+    imageUrl: "/images/hack4gov_2025_cert.png",
+    imageCaption: "Official Certificate of Participation • DICT Hack4Gov Regional Qualifiers • October 2, 2025"
   },
   {
     title: "Based Build and Basics of Web3",
@@ -151,8 +159,7 @@ export const seminarsAndTrainings: SeminarItem[] = [
     venue: "Trend Micro / TrendLabs (Preliminary Round)",
     badge: "CTF",
     imageUrl: "/images/trendmicro_uctf_cert.png",
-    imageCaption: "Certificate of Participation • University Capture the Flag Preliminary Round • Trend Micro / TrendLabs • August 22, 2025",
-    pdfUrl: "/certificates/trendmicro_uctf_2025.pdf"
+    imageCaption: "Certificate of Participation • University Capture the Flag Preliminary Round • Trend Micro / TrendLabs • August 22, 2025"
   },
   {
     title: "Devcon7 SEA Recap - Baguio (Ethereum Philippines)",
@@ -204,28 +211,76 @@ export const credlyBadges: CredlyBadgeItem[] = [
 
 export const hack4govGallery: Hack4GovGalleryItem[] = [
   {
-    id: "hack4gov5_1stplace",
-    title: "Hack4Gov 5 Regional Cyber Challenge",
+    id: "hack4gov5_cert_2026",
+    title: "Hack4Gov 5 Regional Cyber Challenge Certificate",
     competition: "Department of Information and Communications Technology (DICT) • Region 1 / CAR",
     date: "August 13, 2026",
     venue: "Paragon Hotel, Otek St., Baguio City",
     award: "1st Place",
-    badge: "1ST PLACE // 2026",
-    description: "Official 1st Place team photo under the national theme 'Decoding Youth Innovation, Anchoring One Nation's Digital Defense'. Competed and triumphed against leading universities in offensive web exploitation, reverse engineering, binary analysis, and incident mitigation.",
+    badge: "1ST PLACE CERT // 2026",
+    description: "Official 1st Place Certificate awarded to Ramel Joshua O. Cave in the Hack for Gov 5 – Cordillera Regional Competition under the national theme 'Decoding Youth Innovation, Anchoring One Nation's Digital Defense'. Competed in offensive web exploitation, reverse engineering, binary analysis, and incident mitigation.",
+    imageUrl: "/images/hack4gov5_2026_cert.png",
+    alt: "Hack for Gov 5 1st Place Official Certificate of Award"
+  },
+  {
+    id: "hack4gov5_1stplace",
+    title: "Hack4Gov 5 Regional Cyber Challenge Victory Stage",
+    competition: "Department of Information and Communications Technology (DICT) • Region 1 / CAR",
+    date: "August 13, 2026",
+    venue: "Paragon Hotel, Otek St., Baguio City",
+    award: "1st Place",
+    badge: "1ST PLACE STAGE // 2026",
+    description: "Official 1st Place team photograph on stage at Paragon Hotel under the national theme 'Decoding Youth Innovation, Anchoring One Nation's Digital Defense'. Competed and triumphed against leading universities in offensive web exploitation, reverse engineering, binary analysis, and incident mitigation.",
     imageUrl: "/images/hack4gov5_2025.png",
     alt: "Hack4Gov 5 1st Place Winners on Stage at Paragon Hotel, Baguio City"
   },
   {
-    id: "hack4gov_qualifiers",
-    title: "Hack4Gov Regional Qualifiers",
+    id: "hack4gov_qualifiers_cert_2025",
+    title: "Hack4Gov 2025 Regional Qualifiers Certificate",
     competition: "Cybersecurity Bureau & National Computer Emergency Response Team (NCERT)",
     date: "October 2, 2025",
     venue: "Paragon Hotel, Baguio City",
     award: "Official Certificate of Participation",
-    badge: "FINALIST // 2025",
+    badge: "QUALIFIERS CERT // 2025",
+    description: "Official Certificate of Participation awarded to Ramel Joshua O. Cave for competing in the 2025 Regional Qualifiers of Hack4Gov at Paragon Hotel, Baguio City. Recognized by DICT for excellence in technical cyber challenges and protocol defense.",
+    imageUrl: "/images/hack4gov_2025_cert.png",
+    alt: "Hack4Gov 2025 Regional Qualifiers Official Certificate of Participation"
+  },
+  {
+    id: "hack4gov_qualifiers",
+    title: "Hack4Gov Regional Delegation",
+    competition: "Cybersecurity Bureau & National Computer Emergency Response Team (NCERT)",
+    date: "October 2, 2025",
+    venue: "Paragon Hotel, Baguio City",
+    award: "Official Certificate of Participation",
+    badge: "DELEGATION // 2025",
     description: "Ramel Joshua O. Cave holding his official Certificate of Participation alongside his team in Hack4Gov cybersecurity uniform. Recognized by DICT for excellence in technical cyber challenges, OSINT, and protocol packet inspection.",
     imageUrl: "/images/hack4gov_2025.png",
     alt: "Ramel Joshua O. Cave and team holding DICT Hack4Gov Certificates of Participation"
+  },
+  {
+    id: "accenture_sap_academy_2026",
+    title: "Accenture Technology Academy - SAP Basis (350 Hours)",
+    competition: "Accenture Philippines & University of the Cordilleras",
+    date: "August 22, 2026",
+    venue: "University of the Cordilleras, Baguio City",
+    award: "Certificate of Completion",
+    badge: "SAP BASIS // 350 HRS",
+    description: "Official Certificate of Completion awarded to Ramel Joshua O. Cave for successfully completing the 350-hour intensive curriculum of the Accenture Technology Academy for SAP Basis.",
+    imageUrl: "/images/accenture_academy_cert.png",
+    alt: "Accenture Technology Academy SAP Basis Certificate of Completion"
+  },
+  {
+    id: "sui_move_campus_2025",
+    title: "Sui Move in Campus Certification",
+    competition: "Sui Foundation & UC Baguio Web3 Initiative",
+    date: "October 23, 2025",
+    venue: "University of the Cordilleras, Baguio City",
+    award: "Certificate of Completion",
+    badge: "WEB3 / SUI // 2025",
+    description: "Official Certificate of Completion awarded to Cave Ramel Joshua for successfully participating in and completing the Sui Move in Campus smart contract training program.",
+    imageUrl: "/images/sui_move_cert.png",
+    alt: "Sui Move in Campus Certificate of Completion"
   },
   {
     id: "uctf_trendmicro_2025",
@@ -236,7 +291,6 @@ export const hack4govGallery: Hack4GovGalleryItem[] = [
     badge: "CTF // 2025",
     description: "Official Certificate of Participation awarded to Joshua Cave for successfully participating in the University Capture the Flag Preliminary Round sponsored by Trend Micro.",
     imageUrl: "/images/trendmicro_uctf_cert.png",
-    pdfUrl: "/certificates/trendmicro_uctf_2025.pdf",
     alt: "Trend Micro University Capture the Flag Certificate of Participation"
   },
   {
@@ -248,7 +302,6 @@ export const hack4govGallery: Hack4GovGalleryItem[] = [
     badge: "GOOGLE GDG // 2025",
     description: "Official Certificate of Participation awarded to Ramel Joshua O. Cave for attending and actively participating in DevFest Baguio 2025 organized by Google Developer Group (GDG) Baguio.",
     imageUrl: "/images/devfest_baguio_cert.png",
-    pdfUrl: "/certificates/devfest_baguio_2025.pdf",
     alt: "DevFest Baguio 2025 Google Developer Groups Certificate of Participation"
   },
   {
@@ -260,7 +313,6 @@ export const hack4govGallery: Hack4GovGalleryItem[] = [
     badge: "ANALYTICS // 2026",
     description: "Official Certificate of Participation awarded to Ramel Joshua O. Cave for actively participating in the CITCS Webinar Series on Practical Data Analytics using Python and Data Visualization.",
     imageUrl: "/images/python_analytics_cert.png",
-    pdfUrl: "/certificates/python_data_analytics_2026.pdf",
     alt: "CITCS Certificate of Participation Practical Data Analytics using Python"
   },
   {
