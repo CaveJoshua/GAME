@@ -16,7 +16,7 @@ interface ResumeScreenProps {
 
 export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [activeLightbox, setActiveLightbox] = useState<{ url: string; title: string; caption: string } | null>(null);
+  const [activeLightbox, setActiveLightbox] = useState<{ url: string; title: string; caption: string; pdfUrl?: string } | null>(null);
 
   useEffect(() => {
     // Ensure Credly embed script is loaded
@@ -488,14 +488,14 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
         <section id="competition-proof" className="section hack4gov-gallery-section">
           <div className="credly-header-row">
             <div>
-              <span className="section-tag">Cyber Defense Honors & Documentation</span>
-              <h2 className="section-title">Hack4Gov Competition Proof</h2>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginTop: '0.35rem', maxWidth: '750px' }}>
-                Photographic documentation and verified credentials confirming 1st Place and Regional Finalist honors at the Department of Information and Communications Technology (DICT) Hack4Gov Cyber Challenges.
+              <span className="section-tag">Cyber Defense Honors & Authenticated Credentials</span>
+              <h2 className="section-title">Competition Proof & Verified Certificates</h2>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginTop: '0.35rem', maxWidth: '780px' }}>
+                Photographic documentation, competition honors, and authenticated certificates confirming 1st Place at Hack4Gov, Trend Micro CTF, GDG DevFest, CITCS Python Data Analytics, and Ethereum Web3 Devcon7.
               </p>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span className="hack4gov-tag-pill gold">2025 – 2026 COMPETITION ARCHIVE</span>
+              <span className="hack4gov-tag-pill gold">2025 – 2026 VERIFIED ARCHIVE</span>
             </div>
           </div>
 
@@ -507,9 +507,10 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
                   onClick={() => setActiveLightbox({
                     url: item.imageUrl,
                     title: item.title,
-                    caption: item.description
+                    caption: item.description,
+                    pdfUrl: item.pdfUrl
                   })}
-                  title="Click to view full-resolution photograph"
+                  title="Click to view full-resolution credential"
                 >
                   <img src={item.imageUrl} alt={item.alt} />
                   <div className="hack4gov-img-overlay">
@@ -539,23 +540,55 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
 
                   <div className="hack4gov-card-footer">
                     <span>STATUS: <strong>AUTHENTICATED RECORD</strong></span>
-                    <button
-                      className="btn btn-print"
-                      style={{ padding: '3px 10px', fontSize: '0.74rem', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
-                      onClick={() => setActiveLightbox({
-                        url: item.imageUrl,
-                        title: item.title,
-                        caption: item.description
-                      })}
-                    >
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                      </svg>
-                      <span>Enlarge Photo</span>
-                    </button>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <button
+                        className="btn btn-print"
+                        style={{ padding: '3px 10px', fontSize: '0.74rem', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+                        onClick={() => setActiveLightbox({
+                          url: item.imageUrl,
+                          title: item.title,
+                          caption: item.description,
+                          pdfUrl: item.pdfUrl
+                        })}
+                      >
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="11" cy="11" r="8"></circle>
+                          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                          <line x1="11" y1="8" x2="11" y2="14"></line>
+                          <line x1="8" y1="11" x2="14" y2="11"></line>
+                        </svg>
+                        <span>Enlarge</span>
+                      </button>
+
+                      {item.pdfUrl && (
+                        <a
+                          href={item.pdfUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-print"
+                          style={{
+                            padding: '3px 9px',
+                            fontSize: '0.74rem',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '4px',
+                            textDecoration: 'none',
+                            color: 'var(--red-primary)',
+                            borderColor: 'rgba(217, 4, 41, 0.35)'
+                          }}
+                          title="Open official PDF certificate in new tab"
+                        >
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                          </svg>
+                          <span>PDF ↗</span>
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -748,31 +781,60 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
                     </div>
                   )}
                   <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>{item.venue}</div>
-                  {item.imageUrl && (
-                    <button
-                      className="btn btn-print"
-                      style={{
-                        padding: '2px 8px',
-                        fontSize: '0.72rem',
-                        marginTop: '0.5rem',
-                        borderColor: 'var(--gold-border)',
-                        color: 'var(--gold-dark)',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '4px'
-                      }}
-                      onClick={() => setActiveLightbox({
-                        url: item.imageUrl!,
-                        title: item.title,
-                        caption: item.imageCaption || item.title
-                      })}
-                    >
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                        <circle cx="12" cy="13" r="4"></circle>
-                      </svg>
-                      <span>Photo Proof</span>
-                    </button>
+                  {(item.imageUrl || item.pdfUrl) && (
+                    <div style={{ display: 'flex', gap: '6px', marginTop: '0.5rem', flexWrap: 'wrap' }}>
+                      {item.imageUrl && (
+                        <button
+                          className="btn btn-print"
+                          style={{
+                            padding: '2px 8px',
+                            fontSize: '0.72rem',
+                            borderColor: item.highlight ? 'var(--gold-border)' : 'var(--blue-border)',
+                            color: item.highlight ? 'var(--gold-dark)' : 'var(--blue-primary)',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '4px'
+                          }}
+                          onClick={() => setActiveLightbox({
+                            url: item.imageUrl!,
+                            title: item.title,
+                            caption: item.imageCaption || item.title,
+                            pdfUrl: item.pdfUrl
+                          })}
+                        >
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                          </svg>
+                          <span>{item.pdfUrl ? 'Certificate' : 'Photo Proof'}</span>
+                        </button>
+                      )}
+                      {item.pdfUrl && (
+                        <a
+                          href={item.pdfUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-print"
+                          style={{
+                            padding: '2px 8px',
+                            fontSize: '0.72rem',
+                            borderColor: 'rgba(217, 4, 41, 0.35)',
+                            color: 'var(--red-primary)',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '4px',
+                            textDecoration: 'none'
+                          }}
+                          title="Open authentic PDF document in new tab"
+                        >
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                          </svg>
+                          <span>PDF ↗</span>
+                        </a>
+                      )}
+                    </div>
                   )}
                 </div>
                 <div className="seminar-meta">
@@ -859,13 +921,43 @@ export const ResumeScreen: React.FC<ResumeScreenProps> = ({ onRestartGame }) => 
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
             <div className="lightbox-header">
               <div style={{ fontWeight: 700, fontSize: '0.98rem' }}>{activeLightbox.title}</div>
-              <button
-                className="lightbox-close-btn"
-                onClick={() => setActiveLightbox(null)}
-                title="Close Lightbox (Esc)"
-              >
-                ✕
-              </button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                {activeLightbox.pdfUrl && (
+                  <a
+                    href={activeLightbox.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-print"
+                    style={{
+                      padding: '3px 10px',
+                      fontSize: '0.74rem',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                      textDecoration: 'none',
+                      color: 'var(--red-primary)',
+                      borderColor: 'rgba(217, 4, 41, 0.4)'
+                    }}
+                    title="Open official PDF document in new tab"
+                  >
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                      <line x1="16" y1="13" x2="8" y2="13"></line>
+                      <line x1="16" y1="17" x2="8" y2="17"></line>
+                      <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    <span>Open PDF ↗</span>
+                  </a>
+                )}
+                <button
+                  className="lightbox-close-btn"
+                  onClick={() => setActiveLightbox(null)}
+                  title="Close Lightbox (Esc)"
+                >
+                  ✕
+                </button>
+              </div>
             </div>
             <div className="lightbox-img-wrap">
               <img src={activeLightbox.url} alt={activeLightbox.title} />

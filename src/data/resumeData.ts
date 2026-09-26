@@ -116,14 +116,20 @@ export const seminarsAndTrainings: SeminarItem[] = [
   {
     title: "Practical Data Analytics Using Python and Data Visualization",
     date: "March 14, 2026",
-    venue: "University of the Cordilleras",
-    badge: "ANALYTICS"
+    venue: "University of the Cordilleras (CITCS Webinar Series)",
+    badge: "ANALYTICS",
+    imageUrl: "/images/python_analytics_cert.png",
+    imageCaption: "Certificate of Participation • CITCS Webinar Series: Practical Data Analytics using Python and Data Visualization • March 14, 2026",
+    pdfUrl: "/certificates/python_data_analytics_2026.pdf"
   },
   {
     title: "DevFest Baguio 2025",
     date: "October 18, 2025",
-    venue: "Baguio Convention Center, Baguio City",
-    badge: "TECH SUMMIT"
+    venue: "Baguio Convention and Cultural Center, Baguio City",
+    badge: "GOOGLE / GDG",
+    imageUrl: "/images/devfest_baguio_cert.png",
+    imageCaption: "Certificate of Participation • DevFest Baguio 2025 • Google Developer Group (GDG) Baguio • October 18, 2025",
+    pdfUrl: "/certificates/devfest_baguio_2025.pdf"
   },
   {
     title: "Hack4Gov Regional Qualifiers",
@@ -142,14 +148,19 @@ export const seminarsAndTrainings: SeminarItem[] = [
   {
     title: "University Capture the Flag TrendMicro",
     date: "August 22, 2025",
-    venue: "University of the Cordilleras",
-    badge: "CTF"
+    venue: "Trend Micro / TrendLabs (Preliminary Round)",
+    badge: "CTF",
+    imageUrl: "/images/trendmicro_uctf_cert.png",
+    imageCaption: "Certificate of Participation • University Capture the Flag Preliminary Round • Trend Micro / TrendLabs • August 22, 2025",
+    pdfUrl: "/certificates/trendmicro_uctf_2025.pdf"
   },
   {
-    title: "Ethereum Development Workshop",
+    title: "Devcon7 SEA Recap - Baguio (Ethereum Philippines)",
     date: "February 15, 2025",
-    venue: "University of the Cordilleras",
-    badge: "BLOCKCHAIN"
+    venue: "University of the Cordilleras, Baguio City",
+    badge: "WEB3 / ETH",
+    imageUrl: "/images/devcon7_baguio_cert.png",
+    imageCaption: "Certificate of Recognition • Devcon7 SEA Recap Baguio • Ethereum Philippines & CITCS • February 15, 2025"
   }
 ];
 
@@ -215,6 +226,53 @@ export const hack4govGallery: Hack4GovGalleryItem[] = [
     description: "Ramel Joshua O. Cave holding his official Certificate of Participation alongside his team in Hack4Gov cybersecurity uniform. Recognized by DICT for excellence in technical cyber challenges, OSINT, and protocol packet inspection.",
     imageUrl: "/images/hack4gov_2025.png",
     alt: "Ramel Joshua O. Cave and team holding DICT Hack4Gov Certificates of Participation"
+  },
+  {
+    id: "uctf_trendmicro_2025",
+    title: "University Capture the Flag Preliminary Round",
+    competition: "Trend Micro & TrendLabs Cybersecurity Division",
+    date: "August 22, 2025",
+    venue: "Trend Micro / TrendLabs",
+    badge: "CTF // 2025",
+    description: "Official Certificate of Participation awarded to Joshua Cave for successfully participating in the University Capture the Flag Preliminary Round sponsored by Trend Micro.",
+    imageUrl: "/images/trendmicro_uctf_cert.png",
+    pdfUrl: "/certificates/trendmicro_uctf_2025.pdf",
+    alt: "Trend Micro University Capture the Flag Certificate of Participation"
+  },
+  {
+    id: "devfest_baguio_2025",
+    title: "DevFest Baguio 2025 Tech Summit",
+    competition: "Google Developer Groups (GDG) Baguio",
+    date: "October 18, 2025",
+    venue: "Baguio Convention and Cultural Center, Baguio City",
+    badge: "GOOGLE GDG // 2025",
+    description: "Official Certificate of Participation awarded to Ramel Joshua O. Cave for attending and actively participating in DevFest Baguio 2025 organized by Google Developer Group (GDG) Baguio.",
+    imageUrl: "/images/devfest_baguio_cert.png",
+    pdfUrl: "/certificates/devfest_baguio_2025.pdf",
+    alt: "DevFest Baguio 2025 Google Developer Groups Certificate of Participation"
+  },
+  {
+    id: "python_analytics_citcs_2026",
+    title: "Practical Data Analytics using Python and Data Visualization",
+    competition: "CITCS Webinar Series • University of the Cordilleras",
+    date: "March 14, 2026",
+    venue: "University of the Cordilleras, Baguio City (via Zoom)",
+    badge: "ANALYTICS // 2026",
+    description: "Official Certificate of Participation awarded to Ramel Joshua O. Cave for actively participating in the CITCS Webinar Series on Practical Data Analytics using Python and Data Visualization.",
+    imageUrl: "/images/python_analytics_cert.png",
+    pdfUrl: "/certificates/python_data_analytics_2026.pdf",
+    alt: "CITCS Certificate of Participation Practical Data Analytics using Python"
+  },
+  {
+    id: "devcon7_baguio_2025",
+    title: "Devcon7 SEA Recap - Baguio",
+    competition: "Ethereum Philippines & CITCS-CSC",
+    date: "February 15, 2025",
+    venue: "University of the Cordilleras, Baguio City",
+    badge: "WEB3 / ETH // 2025",
+    description: "Official Certificate of Recognition awarded to Cave Ramel Joshua for commendable participation and dedication in Devcon7 SEA Recap - Baguio, contributing to Ethereum, Blockchain, and Web3 innovation.",
+    imageUrl: "/images/devcon7_baguio_cert.png",
+    alt: "Certificate of Recognition Devcon7 SEA Recap Baguio Ethereum Philippines"
   }
 ];
 
