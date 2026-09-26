@@ -1,0 +1,79 @@
+/* ==============================================================
+   IMPERIAL WHITE THEME TOKENS: WHITE, RED, BLACK, AND GOLD
+   ============================================================== */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap');
+
+:root {
+  /* Core Base Colors */
+  --bg-canvas: #fafafc;
+  --bg-card: #ffffff;
+  --bg-card-elevated: #f4f4f7;
+  --bg-contrast: #09090b;
+  --bg-contrast-soft: #18181b;
+
+  /* Typography Colors */
+  --text-primary: #09090b;
+  --text-secondary: #3f3f46;
+  --text-muted: #71717a;
+  --text-inverse: #ffffff;
+
+  /* Imperial Gold Accents */
+  --gold-primary: #c59b27;
+  --gold-light: #fbbf24;
+  --gold-dark: #997517;
+  --gold-glow: rgba(197, 155, 39, 0.28);
+  --gold-subtle: rgba(197, 155, 39, 0.08);
+  --gold-border: rgba(197, 155, 39, 0.38);
+
+  /* Tactical Crimson Red Accents */
+  --red-primary: #dc2626;
+  --red-dark: #b91c1c;
+  --red-glow: rgba(220, 38, 38, 0.25);
+  --red-subtle: rgba(220, 38, 38, 0.08);
+  --red-border: rgba(220, 38, 38, 0.35);
+
+  /* Borders & Shadows */
+  --border-light: rgba(0, 0, 0, 0.08);
+  --border-medium: rgba(0, 0, 0, 0.14);
+  --border-dark: #09090b;
+  --shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  --shadow-elevated: 0 12px 30px -4px rgba(0, 0, 0, 0.08);
+  --shadow-gold: 0 10px 30px -5px var(--gold-glow);
+  --shadow-red: 0 10px 25px -5px var(--red-glow);
+
+  /* Geometry & Typography Tokens */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Share Tech Mono', monospace;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Subtle architectural dot grid */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 0;
+}

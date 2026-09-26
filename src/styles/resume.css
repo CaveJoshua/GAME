@@ -1,0 +1,660 @@
+/* ==============================================================
+   STAGE 3: EXECUTIVE RESUME - WHITE THEME WITH RED, BLACK, AND GOLD
+   ============================================================== */
+
+.resume-wrapper {
+  min-height: 100vh;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  position: relative;
+  z-index: 10;
+}
+
+/* Container */
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Navigation Bar */
+.resume-nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.resume-nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.brand-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  background: var(--bg-contrast);
+  color: var(--gold-light);
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--gold-primary);
+  box-shadow: 0 2px 8px var(--gold-glow);
+}
+
+.brand-text h1 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.brand-text span {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Button Component Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.15rem;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.btn-game {
+  background: var(--bg-contrast);
+  color: #ffffff;
+  border: 1px solid var(--red-primary);
+  box-shadow: 0 2px 10px var(--red-glow);
+}
+
+.btn-game:hover {
+  background: var(--red-primary);
+  color: #ffffff;
+  box-shadow: 0 4px 16px var(--red-glow);
+  transform: translateY(-2px);
+}
+
+.btn-print {
+  background: #ffffff;
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+}
+
+.btn-print:hover {
+  border-color: var(--gold-primary);
+  color: var(--gold-dark);
+  box-shadow: 0 2px 12px var(--gold-subtle);
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--bg-contrast);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: var(--red-primary);
+  box-shadow: 0 4px 14px var(--red-glow);
+}
+
+/* Hero Section */
+.resume-hero {
+  padding: 3.5rem 0 2.5rem;
+}
+
+.hero-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 5px 14px;
+  background: var(--gold-subtle);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--gold-dark);
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+
+.hero-name {
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--text-primary);
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+
+.hero-title {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 600;
+  color: var(--red-primary);
+  margin-bottom: 1.25rem;
+}
+
+.hero-about {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 860px;
+  margin-bottom: 1.75rem;
+}
+
+.hero-contact-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: center;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  padding: 1rem 1.25rem;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-subtle);
+}
+
+.contact-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.contact-pill a:hover {
+  color: var(--red-primary);
+}
+
+/* ==============================================================
+   HACK4GOV 1ST PLACE CHAMPION BANNER (GOLD & BLACK PRESTIGE)
+   ============================================================== */
+.champion-banner {
+  background: linear-gradient(135deg, #18181b 0%, #09090b 100%);
+  border: 2px solid var(--gold-primary);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 2rem;
+  color: #ffffff;
+  margin: 1.5rem 0 3rem;
+  box-shadow: 0 10px 30px -5px var(--gold-glow);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.champion-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  bottom: 0;
+  background: linear-gradient(180deg, var(--red-primary), var(--gold-light));
+}
+
+.champion-content {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.trophy-badge {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(197, 155, 39, 0.2);
+  border: 2px solid var(--gold-light);
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  box-shadow: 0 0 20px var(--gold-glow);
+  flex-shrink: 0;
+}
+
+.champion-text h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--gold-light);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.25rem;
+}
+
+.champion-text p {
+  color: #d4d4d8;
+  font-size: 0.92rem;
+}
+
+.champion-meta {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--gold-light);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--gold-border);
+}
+
+/* ==============================================================
+   SECTION HEADERS
+   ============================================================== */
+.section {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border-light);
+}
+
+.section-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--red-primary);
+  margin-bottom: 0.4rem;
+}
+
+.section-title {
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  margin-bottom: 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* ==============================================================
+   EDUCATION TIMELINE
+   ============================================================== */
+.education-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.edu-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-left: 4px solid var(--text-primary);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--shadow-subtle);
+  transition: all var(--transition-fast);
+}
+
+.edu-card:hover {
+  border-left-color: var(--red-primary);
+  box-shadow: var(--shadow-elevated);
+  transform: translateX(4px);
+}
+
+.edu-card.tertiary {
+  border-left-color: var(--gold-primary);
+  background: linear-gradient(180deg, #ffffff 0%, #fffdfa 100%);
+}
+
+.edu-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.edu-level {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--red-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.edu-date {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.edu-degree {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.edu-institution {
+  font-weight: 600;
+  color: var(--gold-dark);
+  font-size: 0.95rem;
+}
+
+.edu-address {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* ==============================================================
+   SKILLS & QUALIFICATIONS
+   ============================================================== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-category-box {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-subtle);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-fast);
+}
+
+.skill-category-box:hover {
+  border-color: var(--gold-border);
+  box-shadow: var(--shadow-elevated);
+  transform: translateY(-3px);
+}
+
+.skill-cat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.skill-cat-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-contrast);
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skill-cat-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.skill-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.skill-items li {
+  position: relative;
+  padding-left: 1.25rem;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+.skill-items li::before {
+  content: "■";
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-size: 0.65rem;
+  color: var(--red-primary);
+}
+
+/* ==============================================================
+   SEMINARS & TRAININGS
+   ============================================================== */
+.seminars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 1.25rem;
+}
+
+.seminar-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-subtle);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--transition-fast);
+}
+
+.seminar-card:hover {
+  border-color: var(--red-border);
+  transform: translateY(-2px);
+}
+
+.seminar-card.highlight {
+  border: 1.5px solid var(--gold-primary);
+  background: #fffdf8;
+  box-shadow: 0 4px 16px var(--gold-subtle);
+}
+
+.seminar-badge {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--bg-contrast);
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.seminar-card.highlight .seminar-badge {
+  background: var(--gold-primary);
+  color: #09090b;
+}
+
+.seminar-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.seminar-meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--border-light);
+  font-family: var(--font-mono);
+}
+
+/* ==============================================================
+   PERSONAL INFO & REFERENCES
+   ============================================================== */
+.personal-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 1.5rem;
+}
+
+.personal-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+.info-rows {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.info-row-label {
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.info-row-val {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Footer */
+.resume-footer {
+  border-top: 1px solid var(--border-light);
+  padding: 3rem 0;
+  background: #ffffff;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Toast */
+.app-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--bg-contrast);
+  color: #ffffff;
+  border: 1px solid var(--gold-primary);
+  box-shadow: 0 8px 24px var(--gold-glow);
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==============================================================
+   ATS / PRINT STYLESHEET (@media print)
+   ============================================================== */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 10.5pt !important;
+    line-height: 1.4 !important;
+  }
+
+  body::after, .resume-nav, .btn, .app-toast {
+    display: none !important;
+  }
+
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .section {
+    padding: 1rem 0 !important;
+    page-break-inside: avoid;
+  }
+
+  .champion-banner {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 2px solid #000000 !important;
+    box-shadow: none !important;
+    padding: 1rem !important;
+  }
+
+  .champion-text h3 {
+    color: #000000 !important;
+  }
+
+  .champion-text p {
+    color: #333333 !important;
+  }
+
+  .trophy-badge {
+    background: #f0f0f0 !important;
+    border-color: #000000 !important;
+    color: #000000 !important;
+  }
+
+  .edu-card, .skill-category-box, .seminar-card, .personal-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 0 1rem 0 !important;
+  }
+
+  .seminars-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .personal-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
