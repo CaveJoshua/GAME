@@ -252,6 +252,7 @@ class CppSecurityGuardrailEngine {
       bytesAllocated: this.wasmMemory ? this.wasmMemory.buffer.byteLength : 2048,
       memoryChecksum: checksum,
       guardrailsActive: [
+        'C++ Native Core (src/security/native/security_guard.cpp)',
         'C++ WebAssembly Linear Buffer (128KB)',
         'Canary Guardrail (0xDEADBEEF)',
         'Hardware F-Key Interception Trap',
